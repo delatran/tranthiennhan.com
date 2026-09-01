@@ -611,8 +611,9 @@ test("navigation exposes location and fixed UI preserves focus space", async () 
   assert.match(app, /document\.fonts\?\.ready/u);
   assert.match(app, /document\.fonts\.ready\.then\(alignTarget\)/u);
   assert.match(scrollHook, /new window\.IntersectionObserver/u);
+  assert.match(scrollHook, /new window\.ResizeObserver/u);
   assert.doesNotMatch(scrollHook, /addEventListener\("scroll"/u);
-  assert.doesNotMatch(scrollHook, /getBoundingClientRect/u);
+  assert.doesNotMatch(scrollHook, /getBoundingClientRect|offsetHeight/u);
   assert.match(
     app,
     /getElementById\(target\)[\s\S]*?scrollIntoView\(\{ block: "start", behavior: "instant" \}\)/u,

@@ -23,7 +23,14 @@ export function usePortfolioReveal(locale) {
       { rootMargin: "0px 0px -10%", threshold: 0.08 },
     );
 
-    nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
+    let observeFrame = window.requestAnimationFrame(() => {
+      observeFrame = window.requestAnimationFrame(() => {
+        nodes.forEach((node) => observer.observe(node));
+      });
+    });
+    return () => {
+      window.cancelAnimationFrame(observeFrame);
+      observer.disconnect();
+    };
   }, [locale]);
 }

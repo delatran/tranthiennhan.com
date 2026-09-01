@@ -62,14 +62,17 @@ export function useActivePortfolioSection(locale) {
     }
 
     let observer;
+    let headerResizeObserver;
     let resizeFrame = 0;
+    const fallbackHeaderHeight = () =>
+      window.matchMedia("(max-width: 52.5rem)").matches ? 4.9 * 16 : 6 * 16;
+    let headerHeight = fallbackHeaderHeight();
     const intersectingSections = new Set();
 
     const observeActivationLine = () => {
       observer?.disconnect();
       intersectingSections.clear();
 
-      const headerHeight = document.querySelector(".site-header")?.offsetHeight ?? 0;
       const activationLine = Math.min(headerHeight + 32, window.innerHeight - 1);
       const bottomMargin = Math.max(0, window.innerHeight - activationLine - 1);
 
@@ -108,15 +111,40 @@ export function useActivePortfolioSection(locale) {
     };
 
     const scheduleObserverRefresh = () => {
+      if (!headerResizeObserver) headerHeight = fallbackHeaderHeight();
       window.cancelAnimationFrame(resizeFrame);
-      resizeFrame = window.requestAnimationFrame(observeActivationLine);
+      resizeFrame = window.requestAnimationFrame(() => {
+        resizeFrame = window.requestAnimationFrame(observeActivationLine);
+      });
     };
 
-    observeActivationLine();
+    const header = document.querySelector(".site-header");
+    if (header && "ResizeObserver" in window) {
+      headerResizeObserver = new window.ResizeObserver(([entry]) => {
+        const borderBox = Array.isArray(entry.borderBoxSize)
+          ? entry.borderBoxSize[0]
+          : entry.borderBoxSize?.[0] ?? entry.borderBoxSize;
+        const nextHeight = borderBox?.blockSize ?? entry.contentRect.height;
+        if (
+          !Number.isFinite(nextHeight) ||
+          nextHeight <= 0 ||
+          Math.abs(nextHeight - headerHeight) < 0.5
+        ) {
+          return;
+        }
+
+        headerHeight = nextHeight;
+        scheduleObserverRefresh();
+      });
+      headerResizeObserver.observe(header);
+    }
+
+    scheduleObserverRefresh();
     window.addEventListener("resize", scheduleObserverRefresh);
     return () => {
       window.cancelAnimationFrame(resizeFrame);
       window.removeEventListener("resize", scheduleObserverRefresh);
+      headerResizeObserver?.disconnect();
       observer?.disconnect();
     };
   }, [locale]);
