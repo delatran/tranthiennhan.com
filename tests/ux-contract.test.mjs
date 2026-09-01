@@ -510,6 +510,10 @@ test("owner-supplied organization marks stay exact while responsive derivatives 
   assert.match(styles, /\.brand-mark\s*\{[\s\S]*?place-items:\s*center/u);
   assert.match(styles, /\.education-identity\s*\{[\s\S]*?grid-template-columns:\s*4\.75rem minmax\(0, 1fr\)/u);
   assert.match(styles, /\.education-wordmark img\s*\{[\s\S]*?height:\s*5\.5rem/u);
+  assert.match(
+    styles,
+    /\.education-wordmark img\s*\{[\s\S]*?aspect-ratio:\s*1200\s*\/\s*1525/u,
+  );
 
   const originalRasterAssets = [
     {

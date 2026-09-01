@@ -197,6 +197,7 @@
   width: auto;
   max-width: 100%;
   height: 5.5rem;
+  aspect-ratio: 1200 / 1525;
   object-fit: contain;
 }
 
