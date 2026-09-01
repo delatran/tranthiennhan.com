@@ -1,0 +1,60 @@
+name: Feature request
+description: Propose a focused improvement with a clear user outcome.
+title: "[Feature]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe the user problem before the implementation. Requests that invent biography, weaken privacy boundaries, or add silent provider fallback will not be accepted.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Who is affected, what are they trying to do, and where does the current experience fail?
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: Describe observable behavior and acceptance criteria without prescribing unnecessary implementation details.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Include a smaller solution or explain why the current behavior cannot remain.
+    validations:
+      required: true
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Primary impact
+      options:
+        - Usability
+        - Accessibility
+        - Localization
+        - Performance
+        - Privacy or security
+        - X Nhân answer quality
+        - WebMCP interoperability
+        - Developer experience
+    validations:
+      required: true
+  - type: textarea
+    id: tradeoffs
+    attributes:
+      label: Privacy, accessibility, cost, and operational tradeoffs
+      description: State expected provider calls, stored data, new permissions, motion, locale, or Cloudflare changes. Write none only after checking each boundary.
+    validations:
+      required: true
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Scope checks
+      options:
+        - label: I searched existing issues for a similar proposal.
+          required: true
+        - label: I have not included credentials, private transcripts, or unrelated personal data.
+          required: true

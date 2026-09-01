@@ -1,0 +1,40 @@
+{
+  "name": "tran-thien-nhan-portfolio",
+  "private": true,
+  "packageManager": "pnpm@11.19.0",
+  "engines": {
+    "node": ">=24 <25",
+    "pnpm": "11.19.0"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:cloudflare": "pnpm build && pnpm d1:migrate:local && wrangler dev",
+    "build": "vite build && node scripts/build-localized-shells.mjs",
+    "preview": "vite preview",
+    "cloudflare:types": "wrangler types",
+    "check:cloudflare-types": "wrangler types --check",
+    "d1:migrate:local": "wrangler d1 migrations apply portfolio-visitor-analytics --local",
+    "d1:migrate:production": "wrangler d1 migrations apply portfolio-visitor-analytics --remote",
+    "d1:migrations:list": "wrangler d1 migrations list portfolio-visitor-analytics --remote",
+    "verify:production": "pnpm check && pnpm check:cloudflare-types && node scripts/verify-wrangler-dry-run.mjs",
+    "deploy:cloudflare:dry": "pnpm verify:production",
+    "deploy:production": "pnpm verify:production && wrangler deploy --message \"Production #1: Nhan, Nhan and Nhan\"",
+    "deploy:cloudflare": "pnpm deploy:production",
+    "test:worker": "node --test tests/cloudflare-worker.test.mjs tests/production-config.test.mjs",
+    "test:content": "node --test tests/content.test.mjs",
+    "check": "pnpm build && node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "@fontsource/be-vietnam-pro": "^5.3.0",
+    "@phosphor-icons/react": "^2.1.10",
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "5.20260822.1",
+    "@vitejs/plugin-react": "5.0.4",
+    "vite": "6.4.3",
+    "wrangler": "4.127.1"
+  }
+}

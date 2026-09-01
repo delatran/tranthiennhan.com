@@ -1,0 +1,130 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "tran-thien-nhan-portfolio",
+  "main": "./worker/cloudflare.js",
+  "compatibility_date": "2026-08-23",
+  "compatibility_flags": ["enable_request_signal"],
+  "placement": {
+    "mode": "smart"
+  },
+  "workers_dev": false,
+  "preview_urls": false,
+  "keep_vars": true,
+  "routes": [
+    {
+      "pattern": "tranthiennhan.com",
+      "custom_domain": true
+    }
+  ],
+  "assets": {
+    "directory": "./dist/client",
+    "binding": "ASSETS",
+    "not_found_handling": "none",
+    "run_worker_first": [
+      "/api/*",
+      "/",
+      "/index.html",
+      "/en",
+      "/en.html",
+      "/vi",
+      "/vi.html",
+      "/xnhan",
+      "/xnhan/",
+      "/xnhan.html",
+      "/xnhan/about",
+      "/xnhan/about/",
+      "/xnhan-about.html"
+    ]
+  },
+  "ai": {
+    "binding": "AI",
+    "remote": true
+  },
+  "secrets": {
+    "required": ["OPENAI_API_KEY", "OPENROUTER_API_KEY"]
+  },
+  "analytics_engine_datasets": [
+    {
+      "binding": "ASK_NHAN_METRICS",
+      "dataset": "ask_nhan_service_metrics"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "VISITOR_ANALYTICS",
+      "database_name": "portfolio-visitor-analytics",
+      "database_id": "480e313b-2212-40b4-94b2-a1f63c276c5a",
+      "migrations_dir": "./d1-migrations"
+    }
+  ],
+  "migrations": [
+    {
+      "tag": "xnhan_budget",
+      "new_sqlite_classes": ["XNhanBudget"]
+    },
+    {
+      "tag": "xnhan_trends",
+      "new_sqlite_classes": ["XNhanTrends"]
+    },
+    {
+      "tag": "remove_xnhan_budget",
+      "deleted_classes": ["XNhanBudget"]
+    },
+    {
+      "tag": "remove_xnhan_trends",
+      "deleted_classes": ["XNhanTrends"]
+    }
+  ],
+  "triggers": {
+    "crons": ["0 2 * * *"]
+  },
+  "ratelimits": [
+    {
+      "name": "ASK_NHAN_RATE_LIMIT",
+      "namespace_id": "1",
+      "simple": {
+        "limit": 6,
+        "period": 60
+      }
+    },
+    {
+      "name": "VISITOR_RATE_LIMIT",
+      "namespace_id": "2",
+      "simple": {
+        "limit": 30,
+        "period": 60
+      }
+    },
+    {
+      "name": "XNHAN_RATE_LIMIT",
+      "namespace_id": "3",
+      "simple": {
+        "limit": 4,
+        "period": 60
+      }
+    },
+    {
+      "name": "XNHAN_INFERENCE_RATE_LIMIT",
+      "namespace_id": "4",
+      "simple": {
+        "limit": 12,
+        "period": 60
+      }
+    }
+  ],
+  "observability": {
+    "enabled": false,
+    "head_sampling_rate": 1,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "persist": true,
+      "invocation_logs": true
+    },
+    "traces": {
+      "enabled": true,
+      "persist": true,
+      "head_sampling_rate": 1
+    }
+  }
+}

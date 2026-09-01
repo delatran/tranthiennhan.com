@@ -1,0 +1,31 @@
+@import "./portfolio/styles/header.css";
+@import "./portfolio/styles/layout.css";
+@import "./portfolio/styles/hero.css";
+@import "./portfolio/styles/approach.css";
+@import "./portfolio/styles/experience.css";
+@import "./portfolio/styles/work.css";
+@import "./portfolio/styles/product.css";
+@import "./portfolio/styles/contact.css";
+@import "./portfolio/styles/footer.css";
+@import "./portfolio/styles/ask-nhan.css";
+
+@media (max-width: 52.5rem) {
+  html {
+    scroll-padding-top: 6.4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+*::before,
+*::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

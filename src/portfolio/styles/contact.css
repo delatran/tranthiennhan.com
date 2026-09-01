@@ -1,0 +1,161 @@
+.contact-main h2 {
+  margin: 0;
+  font-size: clamp(2.8rem, 5vw, 4.8rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.067em;
+}
+
+.contact-section {
+  color: var(--text-primary);
+  background: var(--accent-signal);
+}
+
+.contact-section :focus-visible {
+  outline-color: var(--text-inverse);
+}
+
+.contact-section .section-main h2[tabindex="-1"]:focus-visible {
+  text-decoration-color: var(--text-inverse);
+}
+
+.contact-section > .section-layout {
+  border-top-color: var(--text-primary);
+}
+
+.contact-main {
+  display: grid;
+  grid-template-columns: minmax(25rem, 1.15fr) minmax(22rem, 0.85fr);
+  gap: clamp(3rem, 7vw, 7rem);
+  align-items: end;
+  padding-top: 5.5rem;
+  padding-bottom: 6rem;
+}
+
+.contact-copy {
+  max-width: 58rem;
+}
+
+.contact-main h2 {
+  max-width: 54rem;
+}
+
+.contact-main p {
+  max-width: 42rem;
+  margin: 1.8rem 0 0;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.contact-location {
+  display: flex;
+  gap: 0.55rem;
+  align-items: center;
+  margin-top: 2rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.contact-links {
+  display: grid;
+  border-top: 1px solid var(--text-primary);
+}
+
+.contact-link {
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  min-height: 5.4rem;
+  padding: 0.9rem 0.75rem;
+  border-bottom: 1px solid var(--text-primary);
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    padding 180ms ease;
+}
+
+.contact-link:hover,
+.contact-link:focus-visible {
+  padding-inline: 1rem;
+  color: var(--text-inverse);
+  background: var(--surface-inverse);
+}
+
+.contact-link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid currentColor;
+}
+
+.contact-link > span:nth-child(2),
+.contact-link small,
+.contact-link strong {
+  display: block;
+  min-width: 0;
+}
+
+.contact-link small {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.contact-link strong {
+  margin-top: 0.25rem;
+  overflow-wrap: anywhere;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+@media (max-width: 64rem) {
+
+  .contact-main {
+    gap: 3rem;
+  }
+
+}
+@media (max-width: 52.5rem) {
+
+  .contact-main h2 {
+    font-size: clamp(2.65rem, 10vw, 4.6rem);
+  }
+
+  .contact-main {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-main {
+    gap: 3.5rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+@media (max-width: 37.5rem) {
+
+  .contact-link {
+    grid-template-columns: 2.5rem minmax(0, 1fr) auto;
+    gap: 0.75rem;
+    padding-inline: 0;
+  }
+
+  .contact-link:hover,
+.contact-link:focus-visible {
+    padding-inline: 0.55rem;
+  }
+
+  .contact-link-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .contact-link strong {
+    font-size: 0.76rem;
+  }
+
+}

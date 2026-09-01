@@ -1,0 +1,112 @@
+.approach-intro h2 {
+  margin: 0;
+  font-size: clamp(2.8rem, 5vw, 4.8rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.067em;
+}
+
+.approach-main {
+  padding-top: 4.5rem;
+}
+
+.approach-intro {
+  display: grid;
+  grid-template-columns: minmax(21rem, 0.9fr) minmax(24rem, 1.1fr);
+  gap: clamp(3rem, 8vw, 8rem);
+  align-items: end;
+}
+
+.approach-intro p {
+  max-width: 43rem;
+  margin: 0;
+  font-size: clamp(1.08rem, 1.55vw, 1.35rem);
+  line-height: 1.65;
+  letter-spacing: -0.025em;
+}
+
+.principles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin: 5.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--text-primary);
+}
+
+.principles li {
+  min-height: 16rem;
+  padding: 1.35rem 2.2rem 1.8rem 0;
+  border-right: 1px solid var(--border-subtle);
+}
+
+.principles li + li {
+  padding-left: 2.2rem;
+}
+
+.principles li:last-child {
+  border-right: 0;
+}
+
+.principles li > span {
+  color: var(--accent-secondary);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.principles h3 {
+  margin: 4.4rem 0 0;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+.principles p {
+  max-width: 20rem;
+  margin: 0.85rem 0 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 64rem) {
+
+  .approach-intro {
+    gap: 3rem;
+  }
+
+}
+
+@media (max-width: 52.5rem) {
+
+  .approach-main {
+    padding-top: 2.2rem;
+  }
+
+  .approach-intro h2 {
+    font-size: clamp(2.65rem, 10vw, 4.6rem);
+  }
+
+  .approach-intro {
+    grid-template-columns: 1fr;
+    gap: 2.2rem;
+  }
+
+  .principles {
+    grid-template-columns: 1fr;
+    margin-top: 3.5rem;
+  }
+
+  .principles li,
+.principles li + li {
+    min-height: 0;
+    padding: 1.3rem 0 2.5rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .principles h3 {
+    margin-top: 2.5rem;
+  }
+}

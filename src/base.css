@@ -1,0 +1,157 @@
+:root {
+  color: #0d190d;
+  background: #f5f7f0;
+  font-family: "Be Vietnam Pro", "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --surface-canvas: #f5f7f0;
+  --surface-subtle: #e8efe6;
+  --surface-raised: #f7fbf7;
+  --surface-inverse: #1c3c1e;
+  --surface-brand-frame: #ffffff;
+  --surface-brand-inverse: #050606;
+  --text-primary: #0d190d;
+  --text-secondary: #526151;
+  --text-inverse: #f7fbf7;
+  --text-disabled: #758074;
+  --border-strong: #728170;
+  --border-subtle: #cfd9ce;
+  --border-brand-frame: #d7dfd5;
+  --border-inverse-subtle: rgb(247 251 247 / 24%);
+  --brand-primary: #225926;
+  --brand-hover: #193c1b;
+  --accent-signal: #6c9264;
+  --accent-signal-strong: #557a4d;
+  --accent-signal-hover: #7ba273;
+  --accent-signal-on-dark: #99c68f;
+  --accent-secondary: #496b42;
+  --focus-on-light: #225926;
+  --focus-on-dark: #99c68f;
+  --shadow-color: rgb(13 25 13 / 20%);
+  --shadow-color-strong: rgb(13 25 13 / 26%);
+  --page-gutter: clamp(1.35rem, 3.6vw, 3.5rem);
+  --max-width: 94rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 7.75rem;
+  background: var(--surface-canvas);
+  overflow-x: clip;
+}
+
+html.mobile-menu-open {
+  scrollbar-width: none;
+}
+
+html.mobile-menu-open::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: clip;
+  color: var(--text-primary);
+  background: var(--surface-canvas);
+  -webkit-font-smoothing: antialiased;
+}
+
+body,
+button,
+input {
+  font-family: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.xnhan-logo-avatar {
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 auto;
+  object-fit: cover;
+  object-position: 50% 20%;
+  background: var(--surface-brand-frame);
+  border: 1px solid var(--border-brand-frame);
+  border-radius: 50%;
+  box-shadow: 0 0.25rem 0.8rem rgb(13 25 13 / 12%);
+}
+
+.xnhan-logo-name {
+  white-space: nowrap;
+}
+
+button,
+input {
+  border: 0;
+  border-radius: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+::selection {
+  color: var(--text-primary);
+  background: var(--accent-signal);
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus-on-light);
+  outline-offset: 4px;
+}
+
+.mobile-menu-overlay :focus-visible,
+.chat-header :focus-visible,
+.site-footer :focus-visible {
+  outline-color: var(--focus-on-dark);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 2000;
+  padding: 0.75rem 1rem;
+  color: var(--text-inverse);
+  background: var(--surface-inverse);
+  transform: translateY(-160%);
+  transition: transform 160ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}

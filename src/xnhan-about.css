@@ -1,0 +1,884 @@
+.xnhan-about-app {
+  --about-reading-width: 94rem;
+  --about-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  min-height: 100vh;
+  color: var(--text-primary);
+  background: var(--surface-canvas);
+}
+
+.xnhan-about-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding-inline: var(--page-gutter);
+  background: rgb(245 247 240 / 90%);
+  border-bottom: 1px solid rgb(207 217 206 / 72%);
+  backdrop-filter: blur(0.95rem);
+}
+
+.xnhan-about-header-inner {
+  display: grid;
+  grid-template-columns: minmax(8rem, 1fr) auto;
+  align-items: center;
+  width: min(100%, var(--about-reading-width));
+  min-height: 4.75rem;
+  margin-inline: auto;
+}
+
+.xnhan-about-back,
+.xnhan-about-product-link,
+.xnhan-about-owner,
+.xnhan-about-locale button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+}
+
+.xnhan-about-back {
+  width: fit-content;
+  gap: 0.55rem;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.xnhan-about-back svg {
+  transition: transform 170ms var(--about-ease-out);
+}
+
+.xnhan-about-back:hover svg,
+.xnhan-about-back:focus-visible svg {
+  transform: translateX(-0.18rem);
+}
+
+.xnhan-about-header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.9rem;
+}
+
+.xnhan-about-product-link,
+.xnhan-about-owner {
+  padding-inline: 0.75rem;
+  font-size: 0.72rem;
+  font-weight: 650;
+}
+
+.xnhan-about-product-link {
+  color: var(--text-inverse);
+  background: var(--brand-primary);
+  border-radius: 999px;
+  transition:
+    background-color 160ms ease,
+    transform 160ms var(--about-ease-out);
+}
+
+.xnhan-about-product-link:hover,
+.xnhan-about-product-link:focus-visible {
+  background: var(--brand-hover);
+}
+
+.xnhan-about-product-link:active {
+  transform: scale(0.98);
+}
+
+.xnhan-about-owner {
+  padding-right: 0;
+  color: var(--text-secondary);
+  border-left: 1px solid var(--border-subtle);
+}
+
+.xnhan-about-owner:hover,
+.xnhan-about-owner:focus-visible {
+  color: var(--brand-primary);
+}
+
+.xnhan-about-locale {
+  display: flex;
+  gap: 0.15rem;
+}
+
+.xnhan-about-locale button {
+  justify-content: center;
+  min-width: 2.75rem;
+  padding: 0.35rem;
+  color: var(--text-secondary);
+  font-size: 0.68rem;
+  font-weight: 750;
+  background: transparent;
+  border-radius: 999px;
+  transition:
+    color 150ms ease,
+    background-color 150ms ease;
+}
+
+.xnhan-about-locale button[aria-pressed="true"] {
+  color: var(--text-inverse);
+  background: var(--surface-inverse);
+}
+
+.xnhan-about-locale button:hover:not([aria-pressed="true"]),
+.xnhan-about-locale button:focus-visible:not([aria-pressed="true"]) {
+  color: var(--text-primary);
+  background: var(--surface-subtle);
+}
+
+.xnhan-about-hero,
+.xnhan-about-section,
+.xnhan-about-cta,
+.xnhan-about-footer {
+  width: min(100%, var(--about-reading-width));
+  margin-inline: auto;
+}
+
+.xnhan-about-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.34fr) minmax(19rem, 0.66fr);
+  gap: clamp(3rem, 8vw, 8rem);
+  min-height: clamp(38rem, calc(82dvh - 4.75rem), 48rem);
+  padding: clamp(4.75rem, 9vh, 8.5rem) var(--page-gutter) 5rem;
+  align-items: center;
+}
+
+.xnhan-about-hero-copy {
+  min-width: 0;
+}
+
+.xnhan-about-eyebrow {
+  margin: 0 0 1.35rem;
+  color: var(--accent-secondary);
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: xnhan-about-enter 360ms var(--about-ease-out) both;
+}
+
+.xnhan-about-hero h1 {
+  max-width: 13ch;
+  margin: 0;
+  font-size: clamp(4.4rem, 8.6vw, 8.8rem);
+  font-weight: 500;
+  line-height: 0.88;
+  letter-spacing: -0.082em;
+}
+
+html[lang="en"] .xnhan-about-hero h1 {
+  max-width: none;
+  font-size: clamp(3.2rem, 7.4vw, 7.6rem);
+}
+
+html[lang="en"] .xnhan-about-title-line > span {
+  white-space: nowrap;
+}
+
+.xnhan-about-title-line {
+  display: block;
+  overflow: hidden;
+}
+
+.xnhan-about-title-line > span {
+  display: block;
+  animation: xnhan-about-title-enter 520ms var(--about-ease-out) both;
+  animation-delay: 30ms;
+}
+
+.xnhan-about-title-line > span[data-title-line="1"] {
+  animation-delay: 90ms;
+}
+
+.xnhan-about-lede {
+  max-width: 52rem;
+  margin: 2.2rem 0 0;
+  color: var(--text-secondary);
+  font-size: clamp(1.05rem, 1.45vw, 1.3rem);
+  line-height: 1.7;
+  letter-spacing: -0.024em;
+  animation: xnhan-about-enter 420ms var(--about-ease-out) 120ms both;
+}
+
+.xnhan-about-hero-aside {
+  padding-bottom: 0.35rem;
+}
+
+.xnhan-about-signal {
+  border-top: 1px solid var(--text-primary);
+  border-bottom: 1px solid var(--text-primary);
+}
+
+.xnhan-about-signal span {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.25rem 2rem minmax(0, 1fr);
+  gap: 0.6rem;
+  align-items: center;
+  min-height: 3.8rem;
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.xnhan-about-signal span + span {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.xnhan-about-signal i {
+  width: 0.42rem;
+  height: 0.42rem;
+  background: var(--accent-secondary);
+  border-radius: 50%;
+  opacity: 0.72;
+  transform: scale(0.82);
+  animation: xnhan-about-signal-pulse 620ms var(--about-ease-out) both;
+}
+
+.xnhan-about-signal span:nth-child(2) i {
+  animation-delay: 110ms;
+}
+
+.xnhan-about-signal span:nth-child(3) i {
+  animation-delay: 220ms;
+}
+
+.xnhan-about-signal small {
+  color: var(--accent-secondary);
+  font-size: 0.625rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+}
+
+.xnhan-about-hero blockquote {
+  margin: 2.5rem 0 0;
+  padding-left: 1.25rem;
+  font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+  font-weight: 550;
+  line-height: 1.5;
+  letter-spacing: -0.035em;
+  border-left: 3px solid var(--accent-signal);
+}
+
+.xnhan-about-section {
+  padding: 6.5rem var(--page-gutter) 7rem;
+  border-top: 1px solid var(--border-strong);
+}
+
+.xnhan-about-section-heading {
+  display: grid;
+  grid-template-columns: minmax(11rem, 0.35fr) minmax(0, 1.65fr);
+  gap: clamp(2rem, 7vw, 7rem);
+  align-items: start;
+}
+
+.xnhan-about-section-label {
+  display: grid;
+  grid-template-columns: 2.4rem minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: center;
+  padding-top: 0.55rem;
+}
+
+.xnhan-about-section-label span,
+.xnhan-about-section-label p {
+  margin: 0;
+  color: var(--accent-secondary);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.xnhan-about-section-heading h2 {
+  max-width: 19ch;
+  margin: 0;
+  font-size: clamp(2.8rem, 5.2vw, 5.4rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.068em;
+}
+
+.xnhan-about-prose,
+.xnhan-about-section-intro,
+.xnhan-about-stage-list,
+.xnhan-about-table-wrap,
+.xnhan-about-boundary-note,
+.xnhan-about-notes {
+  width: min(100%, 63rem);
+  margin-left: auto;
+}
+
+.xnhan-about-prose {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(2rem, 5vw, 5rem);
+  margin-top: 4rem;
+}
+
+.xnhan-about-prose p,
+.xnhan-about-section-intro,
+.xnhan-about-boundary-note {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: clamp(1rem, 1.25vw, 1.15rem);
+  line-height: 1.75;
+  letter-spacing: -0.018em;
+}
+
+.xnhan-about-prose p + p {
+  color: var(--text-secondary);
+}
+
+.xnhan-about-principles {
+  background: var(--surface-raised);
+}
+
+.xnhan-about-section-intro {
+  max-width: 51rem;
+  margin-top: 2.25rem;
+  color: var(--text-secondary);
+}
+
+.xnhan-about-principle-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 4.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--text-primary);
+}
+
+.xnhan-about-principle-list li {
+  min-height: 18rem;
+  padding: 1.25rem 2rem 1.75rem 0;
+  border-right: 1px solid var(--border-subtle);
+}
+
+.xnhan-about-principle-list li + li {
+  padding-left: 2rem;
+}
+
+.xnhan-about-principle-list li:last-child {
+  border-right: 0;
+}
+
+.xnhan-about-principle-list span,
+.xnhan-about-stage-list > li > span {
+  color: var(--accent-secondary);
+  font-size: 0.64rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+}
+
+.xnhan-about-principle-list h3 {
+  margin: 5.2rem 0 0;
+  font-size: 1.25rem;
+  font-weight: 650;
+  line-height: 1.3;
+  letter-spacing: -0.035em;
+}
+
+.xnhan-about-principle-list p {
+  margin: 0.8rem 0 0;
+  color: var(--text-secondary);
+  font-size: 0.84rem;
+  line-height: 1.7;
+}
+
+.xnhan-about-how {
+  color: var(--text-inverse);
+  background: var(--surface-inverse);
+  border-top-color: var(--surface-inverse);
+}
+
+.xnhan-about-how :focus-visible {
+  outline-color: var(--focus-on-dark);
+}
+
+.xnhan-about-how .xnhan-about-section-label span,
+.xnhan-about-how .xnhan-about-section-label p,
+.xnhan-about-how .xnhan-about-stage-list > li > span {
+  color: var(--accent-signal-on-dark);
+}
+
+.xnhan-about-how .xnhan-about-section-intro,
+.xnhan-about-how .xnhan-about-stage-list p {
+  color: rgb(247 251 247 / 67%);
+}
+
+.xnhan-about-stage-list {
+  margin-top: 4rem;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--border-inverse-subtle);
+  border-bottom: 1px solid var(--border-inverse-subtle);
+}
+
+.xnhan-about-stage-list li {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: 1.25rem;
+  min-height: 9.5rem;
+  padding: 1.45rem 0;
+  align-items: center;
+}
+
+.xnhan-about-stage-list li + li {
+  border-top: 1px solid var(--border-inverse-subtle);
+}
+
+.xnhan-about-stage-list h3,
+.xnhan-about-stage-list p {
+  margin: 0;
+}
+
+.xnhan-about-stage-list h3 {
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+.xnhan-about-stage-list p {
+  max-width: 48rem;
+  margin-top: 0.65rem;
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.xnhan-about-table-wrap {
+  margin-top: 4rem;
+  overflow-x: auto;
+  border-top: 1px solid var(--text-primary);
+  border-bottom: 1px solid var(--text-primary);
+  scrollbar-width: thin;
+}
+
+.xnhan-about-table-wrap table {
+  width: 100%;
+  min-width: 48rem;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.xnhan-about-table-wrap th,
+.xnhan-about-table-wrap td {
+  padding: 1.2rem 1.3rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.xnhan-about-table-wrap thead th {
+  color: var(--accent-secondary);
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.xnhan-about-table-wrap thead th:first-child,
+.xnhan-about-table-wrap tbody th {
+  width: 19%;
+}
+
+.xnhan-about-table-wrap thead th:nth-child(2),
+.xnhan-about-table-wrap tbody td:nth-child(2) {
+  background: var(--surface-subtle);
+}
+
+.xnhan-about-table-wrap tbody th {
+  color: var(--text-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.xnhan-about-table-wrap td {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  line-height: 1.65;
+}
+
+.xnhan-about-table-wrap tbody tr:last-child th,
+.xnhan-about-table-wrap tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.xnhan-about-boundary-note {
+  margin-top: 2.25rem;
+  padding: 1.25rem 1.4rem;
+  color: var(--text-primary);
+  background: var(--accent-signal);
+}
+
+.xnhan-about-notes {
+  margin-top: 1rem;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.xnhan-about-notes summary {
+  min-height: 3.25rem;
+  padding: 0.85rem 0;
+  color: var(--text-primary);
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.xnhan-about-notes > div {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  padding: 0 0 1.4rem;
+}
+
+.xnhan-about-notes p {
+  margin: 0;
+  font-size: 0.73rem;
+  line-height: 1.7;
+}
+
+.xnhan-about-cta {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(18rem, 0.75fr);
+  gap: clamp(3rem, 7vw, 7rem);
+  padding: 5.5rem var(--page-gutter);
+  align-items: end;
+  background: var(--accent-signal);
+}
+
+.xnhan-about-cta p {
+  margin: 0 0 1rem;
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.xnhan-about-cta h2 {
+  max-width: 13ch;
+  margin: 0;
+  font-size: clamp(2.8rem, 5.2vw, 5.3rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.07em;
+}
+
+.xnhan-about-cta > div > span {
+  display: block;
+  max-width: 43rem;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.xnhan-about-cta-actions {
+  display: grid;
+  border-top: 1px solid var(--text-primary);
+}
+
+.xnhan-about-cta-actions a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 4.5rem;
+  padding: 0.8rem 0.6rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  border-bottom: 1px solid var(--text-primary);
+  transition:
+    color 170ms ease,
+    background-color 170ms ease,
+    padding 170ms var(--about-ease-out);
+}
+
+.xnhan-about-cta-actions a:hover,
+.xnhan-about-cta-actions a:focus-visible {
+  padding-inline: 0.9rem;
+  color: var(--text-inverse);
+  background: var(--surface-inverse);
+}
+
+.xnhan-about-footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 3rem;
+  min-height: 13rem;
+  padding: 3.5rem var(--page-gutter) 2.5rem;
+  align-items: end;
+  color: var(--text-inverse);
+  background: var(--surface-inverse);
+}
+
+.xnhan-about-footer :focus-visible {
+  outline-color: var(--focus-on-dark);
+}
+
+.xnhan-about-footer > p {
+  max-width: 48rem;
+  margin: 0;
+  color: rgb(247 251 247 / 66%);
+  font-size: 0.72rem;
+  line-height: 1.7;
+}
+
+.xnhan-about-footer nav {
+  display: grid;
+  justify-items: end;
+  gap: 0.7rem;
+}
+
+.xnhan-about-footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2rem;
+  color: var(--accent-signal-on-dark);
+  font-size: 0.66rem;
+}
+
+.xnhan-about-footer a:hover,
+.xnhan-about-footer a:focus-visible {
+  color: var(--text-inverse);
+}
+
+[data-about-reveal] {
+  opacity: 0;
+  transform: translateY(1.1rem);
+  transition:
+    opacity 560ms var(--about-ease-out),
+    transform 560ms var(--about-ease-out);
+}
+
+[data-about-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes xnhan-about-title-enter {
+  from {
+    transform: translateY(0.35em);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes xnhan-about-enter {
+  from {
+    transform: translateY(0.4rem);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes xnhan-about-signal-pulse {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 64rem) {
+  .xnhan-about-owner {
+    display: none;
+  }
+
+  .xnhan-about-hero {
+    grid-template-columns: minmax(0, 1.2fr) minmax(17rem, 0.8fr);
+    gap: 3rem;
+  }
+
+  .xnhan-about-section-heading {
+    grid-template-columns: minmax(9rem, 0.3fr) minmax(0, 1.7fr);
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 52.5rem) {
+  .xnhan-about-header-inner {
+    min-height: 4.25rem;
+  }
+
+  .xnhan-about-product-link {
+    display: none;
+  }
+
+  .xnhan-about-hero {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    min-height: 0;
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
+
+  .xnhan-about-hero h1 {
+    font-size: clamp(3.8rem, 15vw, 6.5rem);
+  }
+
+  .xnhan-about-hero-aside {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 2rem;
+    align-items: end;
+  }
+
+  .xnhan-about-hero blockquote {
+    margin-top: 0;
+  }
+
+  .xnhan-about-section {
+    padding-top: 4.5rem;
+    padding-bottom: 5rem;
+  }
+
+  .xnhan-about-section-heading {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .xnhan-about-section-label {
+    max-width: 14rem;
+  }
+
+  .xnhan-about-prose {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+    margin-top: 3rem;
+  }
+
+  .xnhan-about-principle-list {
+    grid-template-columns: 1fr;
+    margin-top: 3.5rem;
+  }
+
+  .xnhan-about-principle-list li,
+  .xnhan-about-principle-list li + li {
+    min-height: 0;
+    padding: 1.25rem 0 1.65rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .xnhan-about-principle-list li:last-child {
+    border-bottom: 0;
+  }
+
+  .xnhan-about-principle-list h3 {
+    margin-top: 2.5rem;
+  }
+
+  .xnhan-about-stage-list {
+    margin-top: 3rem;
+  }
+
+  .xnhan-about-notes > div {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .xnhan-about-cta {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
+
+  .xnhan-about-footer {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    min-height: 0;
+  }
+
+  .xnhan-about-footer nav {
+    justify-items: start;
+  }
+}
+
+@media (max-width: 36rem) {
+  .xnhan-about-header,
+  .xnhan-about-hero,
+  .xnhan-about-section,
+  .xnhan-about-cta,
+  .xnhan-about-footer {
+    padding-inline: 1rem;
+  }
+
+  .xnhan-about-back span {
+    display: none;
+  }
+
+  .xnhan-about-back {
+    width: 4.75rem;
+    justify-content: flex-start;
+  }
+
+  .xnhan-about-header-actions {
+    gap: 0.2rem;
+  }
+
+  .xnhan-about-hero h1 {
+    font-size: clamp(3.2rem, 16.5vw, 5rem);
+  }
+
+  html[lang="en"] .xnhan-about-hero h1 {
+    font-size: clamp(2.15rem, 11.2vw, 4rem);
+    line-height: 1.08;
+  }
+
+  html[lang="en"] .xnhan-about-title-line > span {
+    white-space: normal;
+  }
+
+  .xnhan-about-hero-aside {
+    grid-template-columns: 1fr;
+  }
+
+  .xnhan-about-hero blockquote {
+    margin-top: 0.75rem;
+  }
+
+  .xnhan-about-stage-list li {
+    grid-template-columns: 2.2rem minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .xnhan-about-table-wrap {
+    margin-right: -1rem;
+    padding-right: 1rem;
+  }
+
+  .xnhan-about-cta h2 {
+    font-size: clamp(2.6rem, 13vw, 4rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .xnhan-about-eyebrow,
+  .xnhan-about-title-line > span,
+  .xnhan-about-lede,
+  .xnhan-about-signal i {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  [data-about-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .xnhan-about-back svg,
+  .xnhan-about-product-link,
+  .xnhan-about-locale button,
+  .xnhan-about-cta-actions a {
+    transition: none;
+    transform: none;
+  }
+}

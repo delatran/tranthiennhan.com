@@ -1,0 +1,364 @@
+.experience-main h2 {
+  margin: 0;
+  font-size: clamp(2.8rem, 5vw, 4.8rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.067em;
+}
+
+.experience-main {
+  padding-top: 4.4rem;
+  padding-bottom: 7rem;
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.38fr) minmax(18rem, 0.62fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: start;
+  margin-top: 5.5rem;
+}
+
+.experience-timeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--text-primary);
+}
+
+.experience-timeline > li {
+  position: relative;
+  padding-left: 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.experience-timeline > li::before {
+  display: none;
+}
+
+.role-card {
+  padding: 1.55rem 0 2.4rem;
+}
+
+.role-heading {
+  display: grid;
+  grid-template-columns: 3.65rem minmax(0, 1fr) max-content;
+  gap: 1rem;
+  align-items: center;
+}
+
+.brand-mark {
+  display: grid;
+  width: 3.65rem;
+  height: 3.65rem;
+  place-items: center;
+  overflow: hidden;
+  background: var(--surface-brand-frame);
+  border: 1px solid var(--border-brand-frame);
+}
+
+.brand-mark img {
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.brand-mark--symbol img {
+  width: 2.7rem;
+  height: 2.7rem;
+}
+
+.brand-mark--inverse {
+  background: var(--surface-brand-inverse);
+  border-color: var(--surface-brand-inverse);
+}
+
+.brand-mark--inverse img {
+  width: 3.05rem;
+  height: 3.05rem;
+}
+
+.role-meta {
+  display: grid;
+  gap: 0.3rem;
+  min-width: 0;
+  color: var(--text-secondary);
+}
+
+.role-organization {
+  color: var(--accent-secondary);
+  font-size: 0.86rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+}
+
+.role-organization-detail,
+.role-dates {
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+.role-dates {
+  justify-self: end;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.role-card h3 {
+  max-width: 44rem;
+  margin: 1.2rem 0 0;
+  font-size: clamp(1.45rem, 2.2vw, 2.05rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.045em;
+}
+
+.role-summary {
+  max-width: 47rem;
+  margin: 1rem 0 0;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.role-highlights {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 48rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.role-highlights li {
+  position: relative;
+  padding-left: 1.2rem;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.role-highlights li::before {
+  position: absolute;
+  top: 0.7em;
+  left: 0;
+  width: 0.4rem;
+  height: 1px;
+  content: "";
+  background: var(--accent-secondary);
+}
+
+.profile-column {
+  padding: 2rem;
+  background: var(--surface-subtle);
+  border-top: 3px solid var(--surface-inverse);
+}
+
+.profile-block + .profile-block {
+  margin-top: 2.4rem;
+  padding-top: 2.1rem;
+  border-top: 1px solid var(--border-strong);
+}
+
+.profile-block > h3 {
+  margin: 0;
+  color: var(--accent-secondary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.education-identity {
+  display: grid;
+  grid-template-columns: 4.75rem minmax(0, 1fr);
+  grid-template-areas:
+    "mark institution"
+    "mark campus";
+  column-gap: 1rem;
+  align-items: center;
+  margin-top: 1.35rem;
+  padding: 1rem;
+  background: var(--surface-brand-frame);
+  border: 1px solid var(--border-brand-frame);
+}
+
+.education-wordmark {
+  display: grid;
+  grid-area: mark;
+  min-height: 5.8rem;
+  place-items: center;
+}
+
+.education-wordmark img {
+  width: auto;
+  max-width: 100%;
+  height: 5.5rem;
+  object-fit: contain;
+}
+
+.education-institution,
+.education-campus {
+  margin: 0;
+}
+
+.education-institution {
+  grid-area: institution;
+  align-self: end;
+  color: var(--text-primary);
+  font-size: 0.78rem;
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+.education-campus {
+  grid-area: campus;
+  align-self: start;
+  margin-top: 0.25rem;
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+.education-degrees {
+  display: grid;
+  margin-top: 0.9rem;
+}
+
+.education-degrees article {
+  padding: 1rem 0;
+}
+
+.education-degrees article + article {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.education-degrees h4 {
+  margin: 0;
+  font-size: 0.94rem;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -0.025em;
+}
+
+.education-degrees span {
+  display: block;
+  margin-top: 0.4rem;
+  color: var(--text-secondary);
+  font-size: 0.74rem;
+  line-height: 1.55;
+}
+
+.profile-items {
+  display: grid;
+  gap: 1.4rem;
+  margin-top: 1.35rem;
+}
+
+.profile-items article h4,
+.profile-items article p {
+  margin: 0;
+}
+
+.profile-items article h4 {
+  font-size: 0.94rem;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -0.025em;
+}
+
+.profile-items article p,
+.profile-items article span {
+  display: block;
+  margin-top: 0.4rem;
+  color: var(--text-secondary);
+  font-size: 0.74rem;
+  line-height: 1.55;
+}
+
+.language-list {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 1.35rem;
+}
+
+.language-list p {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 0.8rem;
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.language-list span {
+  color: var(--text-secondary);
+}
+
+@media (max-width: 64rem) {
+
+  .experience-grid {
+    gap: 3rem;
+  }
+
+}
+@media (max-width: 52.5rem) {
+
+  .experience-main h2 {
+    font-size: clamp(2.65rem, 10vw, 4.6rem);
+  }
+
+  .experience-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-main {
+    padding-top: 3.5rem;
+    padding-bottom: 4.5rem;
+  }
+
+  .experience-grid {
+    margin-top: 3.75rem;
+  }
+}
+
+@media (max-width: 37.5rem) {
+
+  .experience-timeline > li {
+    padding-left: 0;
+  }
+
+  .role-heading {
+    grid-template-columns: 3.25rem minmax(0, 1fr);
+    gap: 0.85rem;
+    align-items: start;
+  }
+
+  .brand-mark {
+    width: 3.25rem;
+    height: 3.25rem;
+  }
+
+  .brand-mark--symbol img {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  .brand-mark--inverse img {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .role-dates {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .profile-column {
+    padding: 1.35rem;
+  }
+
+}

@@ -1,0 +1,93 @@
+.site-footer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4rem;
+  align-items: end;
+  width: min(100%, var(--max-width));
+  min-height: 15rem;
+  margin-inline: auto;
+  padding: 4rem var(--page-gutter) calc(7rem + env(safe-area-inset-bottom));
+  color: var(--text-inverse);
+  background: var(--surface-inverse);
+}
+
+.footer-copy {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.footer-statement {
+  max-width: 32rem;
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.055em;
+}
+
+.site-footer .footer-privacy {
+  max-width: 44rem;
+  margin: 0;
+  color: color-mix(in srgb, var(--text-inverse) 78%, transparent);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  letter-spacing: 0;
+}
+
+.footer-credit {
+  max-width: 44rem;
+  margin: 0;
+  padding-top: 1rem;
+  color: color-mix(in srgb, var(--text-inverse) 74%, transparent);
+  font-size: 0.78rem;
+  line-height: 1.6;
+  letter-spacing: 0;
+  border-top: 1px solid color-mix(in srgb, var(--text-inverse) 18%, transparent);
+}
+
+.footer-meta {
+  display: grid;
+  justify-items: end;
+  gap: 1rem;
+}
+
+.footer-meta > span {
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.footer-visits {
+  display: grid;
+  justify-items: end;
+  gap: 0.28rem;
+  margin: 0;
+}
+
+.footer-visits span {
+  color: color-mix(in srgb, var(--text-inverse) 70%, transparent);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.footer-visits strong {
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+@media (max-width: 52.5rem) {
+
+  .site-footer {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: start;
+    min-height: 0;
+  }
+
+  .footer-meta,
+.footer-visits {
+    justify-items: start;
+  }
+}

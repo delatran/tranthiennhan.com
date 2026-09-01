@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://tranthiennhan.com/.well-known/security-policy.md
+    about: Use the currently deployed private reporting contact for security issues.
+  - name: Live website
+    url: https://tranthiennhan.com
+    about: Check the current production experience before reporting a visual or content defect.

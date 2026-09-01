@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://tranthiennhan.com/en</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://tranthiennhan.com/vi</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://tranthiennhan.com/xnhan</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://tranthiennhan.com/xnhan/about</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+</urlset>
