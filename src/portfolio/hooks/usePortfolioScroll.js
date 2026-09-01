@@ -10,6 +10,24 @@ const PORTFOLIO_SECTION_IDS = [
   "contact",
 ];
 
+export function selectActivePortfolioSection(
+  intersectingSections,
+  pageEndVisible = false,
+) {
+  if (pageEndVisible) return "contact";
+
+  for (
+    let index = PORTFOLIO_SECTION_IDS.length - 1;
+    index >= 0;
+    index -= 1
+  ) {
+    const id = PORTFOLIO_SECTION_IDS[index];
+    if (intersectingSections.has(id)) return id;
+  }
+
+  return undefined;
+}
+
 export function usePortfolioHashAlignment(locale) {
   useEffect(() => {
     const encodedTarget = window.location.hash.slice(1);
@@ -62,12 +80,26 @@ export function useActivePortfolioSection(locale) {
     }
 
     let observer;
+    let pageEndObserver;
     let headerResizeObserver;
     let resizeFrame = 0;
     const fallbackHeaderHeight = () =>
       window.matchMedia("(max-width: 52.5rem)").matches ? 4.9 * 16 : 6 * 16;
     let headerHeight = fallbackHeaderHeight();
     const intersectingSections = new Set();
+    let pageEndVisible = false;
+
+    const commitActiveSection = () => {
+      const nextSection = selectActivePortfolioSection(
+        intersectingSections,
+        pageEndVisible,
+      );
+      if (!nextSection) return;
+
+      setActiveSection((current) =>
+        current === nextSection ? current : nextSection,
+      );
+    };
 
     const observeActivationLine = () => {
       observer?.disconnect();
@@ -82,24 +114,7 @@ export function useActivePortfolioSection(locale) {
             if (entry.isIntersecting) intersectingSections.add(entry.target.id);
             else intersectingSections.delete(entry.target.id);
           });
-
-          let nextSection;
-          for (
-            let index = PORTFOLIO_SECTION_IDS.length - 1;
-            index >= 0;
-            index -= 1
-          ) {
-            const id = PORTFOLIO_SECTION_IDS[index];
-            if (intersectingSections.has(id)) {
-              nextSection = id;
-              break;
-            }
-          }
-          if (!nextSection) return;
-
-          setActiveSection((current) =>
-            current === nextSection ? current : nextSection,
-          );
+          commitActiveSection();
         },
         {
           rootMargin: `-${activationLine}px 0px -${bottomMargin}px 0px`,
@@ -139,12 +154,25 @@ export function useActivePortfolioSection(locale) {
       headerResizeObserver.observe(header);
     }
 
+    const pageEnd = document.querySelector(".site-footer");
+    if (pageEnd) {
+      pageEndObserver = new window.IntersectionObserver(
+        ([entry]) => {
+          pageEndVisible = entry?.isIntersecting ?? false;
+          commitActiveSection();
+        },
+        { threshold: 0.01 },
+      );
+      pageEndObserver.observe(pageEnd);
+    }
+
     scheduleObserverRefresh();
     window.addEventListener("resize", scheduleObserverRefresh);
     return () => {
       window.cancelAnimationFrame(resizeFrame);
       window.removeEventListener("resize", scheduleObserverRefresh);
       headerResizeObserver?.disconnect();
+      pageEndObserver?.disconnect();
       observer?.disconnect();
     };
   }, [locale]);

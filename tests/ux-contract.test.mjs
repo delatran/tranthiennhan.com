@@ -18,6 +18,7 @@ import {
   navigateToTargetById,
 } from "../src/components/navigation.js";
 import { createPortfolioRouteWebMcpActions } from "../src/portfolio-webmcp.js";
+import { selectActivePortfolioSection } from "../src/portfolio/hooks/usePortfolioScroll.js";
 
 const projectRoot = fileURLToPath(new URL("..", import.meta.url));
 
@@ -612,8 +613,14 @@ test("navigation exposes location and fixed UI preserves focus space", async () 
   assert.match(app, /document\.fonts\.ready\.then\(alignTarget\)/u);
   assert.match(scrollHook, /new window\.IntersectionObserver/u);
   assert.match(scrollHook, /new window\.ResizeObserver/u);
+  assert.match(scrollHook, /document\.querySelector\("\.site-footer"\)/u);
   assert.doesNotMatch(scrollHook, /addEventListener\("scroll"/u);
   assert.doesNotMatch(scrollHook, /getBoundingClientRect|offsetHeight/u);
+  assert.equal(selectActivePortfolioSection(new Set(["about"])), "about");
+  assert.equal(
+    selectActivePortfolioSection(new Set(["about"]), true),
+    "contact",
+  );
   assert.match(
     app,
     /getElementById\(target\)[\s\S]*?scrollIntoView\(\{ block: "start", behavior: "instant" \}\)/u,
