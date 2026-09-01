@@ -1412,7 +1412,7 @@ test("the atomic fact catalog is closed, bilingual, bounded, and source-fingerpr
     createHash("sha256")
       .update(JSON.stringify(fingerprintPayload))
       .digest("hex"),
-    "8a3385707ecfab2f1c2e39bd8c1028f40ee64b6f5059b5767034882fcc1afbda",
+    "09363bfeb918c4dd797ba08be5ba445c72e11aa1afbcf972b068473b0ce1dabf",
   );
 });
 

@@ -1,6 +1,14 @@
 /* Presentation owned by XNhanTurn: transcript turns, progress, answers, and sources. */
 .xnhan-chat-turn {
-  animation: xnhan-turn-enter 300ms var(--xnhan-ease-out) both;
+  animation: xnhan-turn-enter 340ms var(--xnhan-ease-out) both;
+}
+
+.xnhan-chat-turn > .xnhan-user-turn {
+  animation: xnhan-user-turn-enter 360ms var(--xnhan-ease-out) both;
+}
+
+.xnhan-chat-turn > :not(.xnhan-user-turn) {
+  animation: xnhan-assistant-turn-enter 420ms var(--xnhan-ease-out) 70ms both;
 }
 
 .xnhan-chat-turn + .xnhan-chat-turn {
@@ -170,6 +178,7 @@
   gap: 0.55rem;
   min-width: 0;
   padding: 0.38rem 0;
+  animation: xnhan-activity-item-enter 300ms var(--xnhan-ease-out) both;
 }
 
 .xnhan-activity-list li:not(:last-child)::after {
@@ -786,12 +795,48 @@
 @keyframes xnhan-turn-enter {
   from {
     opacity: 0;
-    transform: translateY(0.45rem);
+    transform: translate3d(0, 0.55rem, 0);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes xnhan-user-turn-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0.45rem, 0.25rem, 0) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes xnhan-assistant-turn-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(-0.35rem, 0.4rem, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes xnhan-activity-item-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.25rem, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -876,6 +921,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .xnhan-chat-turn,
+  .xnhan-chat-turn > .xnhan-user-turn,
+  .xnhan-chat-turn > :not(.xnhan-user-turn),
+  .xnhan-activity-list li,
   .xnhan-sources-panel,
   .xnhan-progress-track > span,
   .xnhan-activity.is-live .xnhan-activity-header > span::before {

@@ -12,14 +12,18 @@ export function SelectedWork({ copy }) {
       <div className="section-layout">
         <SectionRail index="02" label={copy.work.eyebrow} />
         <div className="section-main work-main">
-          <header className="section-heading" data-reveal>
+          <header className="section-heading" data-reveal="heading">
             <h2 id="work-title" tabIndex="-1">
               {copy.work.title}
             </h2>
             <p>{copy.work.intro}</p>
           </header>
 
-          <nav className="work-index" aria-label={copy.work.labels.index} data-reveal>
+          <nav
+            className="work-index"
+            aria-label={copy.work.labels.index}
+            data-reveal="stagger"
+          >
             <ol>
               {copy.work.items.map((item) => (
                 <li key={item.slug}>
@@ -43,7 +47,7 @@ export function SelectedWork({ copy }) {
               <article
                 className="case-study"
                 data-tone={item.tone}
-                data-reveal
+                data-reveal="case"
                 key={item.index}
                 id={`work-${item.slug}`}
                 aria-labelledby={`case-title-${item.slug}`}
@@ -63,6 +67,24 @@ export function SelectedWork({ copy }) {
                   </h3>
                   <p>{item.summary}</p>
                 </div>
+
+                <section
+                  className="case-flow"
+                  aria-labelledby={`case-flow-${item.slug}`}
+                >
+                  <h4 id={`case-flow-${item.slug}`}>{copy.work.labels.flow}</h4>
+                  <ol>
+                    {item.workflow.map((step) => (
+                      <li key={step.index}>
+                        <span aria-hidden="true">{step.index}</span>
+                        <div>
+                          <strong>{step.title}</strong>
+                          <p>{step.text}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                </section>
 
                 <ul
                   className="case-metrics"

@@ -156,6 +156,29 @@ test("the public profile is grounded in the approved general AI Engineer resume"
   assert.equal(content.vi.experience.languages[1].level, "Cận cao cấp");
 });
 
+test("the upgraded profile exposes system depth without changing the English level", () => {
+  const serialized = JSON.stringify(content);
+
+  for (const locale of locales) {
+    const experience = content[locale].experience;
+    const projects = content[locale].work.items;
+
+    assert.equal(experience.capabilities.length, 3);
+    assert.ok(experience.capabilities.every((group) => group.items.length >= 8));
+    assert.ok(projects.every((project) => project.workflow.length === 4));
+  }
+
+  assert.match(content.en.work.items[0].contribution, /idempotent/u);
+  assert.match(content.en.work.items[1].contribution, /backpressure/u);
+  assert.match(content.en.work.items[1].contribution, /quota circuit breaking/u);
+  assert.match(content.en.work.items[1].contribution, /token\/latency telemetry/u);
+  assert.match(content.en.work.items[2].contribution, /12 gray-box adaptive-attack conditions/u);
+  assert.match(content.en.work.items[2].contribution, /four cross-lingual EN-VI cells/u);
+  assert.doesNotMatch(serialized, /\bTOEIC\b|860\s*\/\s*990/iu);
+  assert.equal(content.en.experience.languages[1].level, "Upper-intermediate");
+  assert.equal(content.vi.experience.languages[1].level, "Cận cao cấp");
+});
+
 test("organization identities are explicit, deduplicated, and locale-safe", () => {
   locales.forEach((locale) => {
     const experience = content[locale].experience;

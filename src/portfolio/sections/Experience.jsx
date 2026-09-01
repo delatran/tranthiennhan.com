@@ -58,7 +58,7 @@ export function Experience({ copy }) {
       <div className="section-layout">
         <SectionRail index="04" label={copy.experience.eyebrow} />
         <div className="section-main experience-main">
-          <header className="section-heading" data-reveal>
+          <header className="section-heading" data-reveal="heading">
             <h2 id="experience-title" tabIndex="-1">
               {copy.experience.title}
             </h2>
@@ -74,7 +74,7 @@ export function Experience({ copy }) {
 
                 return (
                   <li key={`${role.organizationKey}-${role.dates}`}>
-                    <article className="role-card" data-reveal>
+                    <article className="role-card" data-reveal="card">
                       <div className="role-heading">
                         <BrandMark asset={logo} />
                         <div className="role-meta">
@@ -99,7 +99,7 @@ export function Experience({ copy }) {
               })}
             </ol>
 
-            <div className="profile-column" data-reveal>
+            <div className="profile-column" data-reveal="card">
               <section className="profile-block education-block">
                 <h3>{copy.experience.educationLabel}</h3>
                 <div className="education-identity">
@@ -155,6 +155,35 @@ export function Experience({ copy }) {
               </section>
             </div>
           </div>
+
+          <section
+            className="capability-map"
+            aria-labelledby="capability-map-title"
+            data-reveal="stagger"
+          >
+            <header>
+              <p>{copy.experience.capabilitiesLabel}</p>
+              <h3 id="capability-map-title">
+                {copy.experience.capabilitiesTitle}
+              </h3>
+              <span>{copy.experience.capabilitiesIntro}</span>
+            </header>
+            <div className="capability-grid">
+              {copy.experience.capabilities.map((capability, index) => (
+                <article key={capability.title}>
+                  <span aria-hidden="true">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h4>{capability.title}</h4>
+                  <p>{capability.summary}</p>
+                  <TagList
+                    items={capability.items}
+                    label={`${copy.experience.capabilitiesLabel} · ${capability.title}`}
+                  />
+                </article>
+              ))}
+            </div>
+          </section>
         </div>
       </div>
     </section>

@@ -112,6 +112,67 @@ test("portfolio style entry preserves component order and responsive ownership",
   );
 });
 
+test("the shared motion system stays composited, staged, and reduced-motion safe", async () => {
+  const [base, portfolio, work, experience, askNhan, xnhan, xnhanTurn, xnhanAbout] =
+    await Promise.all([
+      source("src/base.css"),
+      portfolioStyles(),
+      source("src/portfolio/styles/work.css"),
+      source("src/portfolio/styles/experience.css"),
+      source("src/portfolio/styles/ask-nhan.css"),
+      source("src/xnhan.css"),
+      source("src/xnhan-turn.css"),
+      source("src/xnhan-about.css"),
+    ]);
+  const styles = [portfolio, xnhan, xnhanTurn, xnhanAbout].join("\n");
+
+  assert.match(base, /--motion-duration-medium:\s*420ms/u);
+  assert.match(base, /--motion-ease-out:\s*cubic-bezier\(0\.16, 1, 0\.3, 1\)/u);
+  assert.match(portfolio, /\[data-reveal="stagger"\]\.is-visible/u);
+  assert.match(work, /\.case-flow ol\s*\{[^}]*grid-template-columns:\s*repeat\(4/su);
+  assert.match(experience, /\.capability-map\[data-reveal\]\.is-visible/u);
+  assert.match(askNhan, /@keyframes chat-message-enter/u);
+  assert.match(xnhan, /@keyframes xnhan-suggestion-enter/u);
+  assert.match(xnhanTurn, /@keyframes xnhan-assistant-turn-enter/u);
+  assert.match(xnhanAbout, /\.xnhan-about-stage-list\[data-about-reveal\]\.is-visible/u);
+  assert.doesNotMatch(
+    styles,
+    /transition\s*:[^}]*\b(?:top|right|bottom|left|width|height|margin|padding)\s+[0-9]/iu,
+  );
+
+  const keyframeBlocks = [];
+  let cursor = 0;
+  while (true) {
+    const start = styles.indexOf("@keyframes", cursor);
+    if (start === -1) break;
+    const bodyStart = styles.indexOf("{", start);
+    let depth = 0;
+    let end = bodyStart;
+    for (; end < styles.length; end += 1) {
+      if (styles[end] === "{") depth += 1;
+      if (styles[end] === "}") depth -= 1;
+      if (depth === 0) break;
+    }
+    keyframeBlocks.push(styles.slice(start, end + 1));
+    cursor = end + 1;
+  }
+
+  assert.ok(keyframeBlocks.length >= 12);
+  for (const block of keyframeBlocks) {
+    const declarations = [...block.matchAll(/^\s*([a-z-]+)\s*:/gmu)].map(
+      (match) => match[1],
+    );
+    assert.ok(
+      declarations.every((property) => property === "opacity" || property === "transform"),
+      `keyframe may only animate opacity/transform:\n${block}`,
+    );
+  }
+
+  for (const reducedSource of [portfolio, askNhan, xnhan, xnhanTurn, xnhanAbout]) {
+    assert.match(reducedSource, /@media \(prefers-reduced-motion:\s*reduce\)/u);
+  }
+});
+
 function extractFunctionSource(sourceText, name) {
   const start = sourceText.indexOf(`function ${name}(`);
   assert.notEqual(start, -1, `${name} source must be discoverable`);
@@ -537,10 +598,11 @@ test("owner-supplied organization marks stay exact while responsive derivatives 
 });
 
 test("navigation exposes location and fixed UI preserves focus space", async () => {
-  const [app, baseStyles, styles] = await Promise.all([
+  const [app, baseStyles, styles, scrollHook] = await Promise.all([
     applicationSource(),
     source("src/base.css"),
     portfolioStyles(),
+    source("src/portfolio/hooks/usePortfolioScroll.js"),
   ]);
 
   assert.match(app, /function useActivePortfolioSection/u);
@@ -548,6 +610,9 @@ test("navigation exposes location and fixed UI preserves focus space", async () 
   assert.match(app, /target in TARGET_FOCUS_IDS/u);
   assert.match(app, /document\.fonts\?\.ready/u);
   assert.match(app, /document\.fonts\.ready\.then\(alignTarget\)/u);
+  assert.match(scrollHook, /new window\.IntersectionObserver/u);
+  assert.doesNotMatch(scrollHook, /addEventListener\("scroll"/u);
+  assert.doesNotMatch(scrollHook, /getBoundingClientRect/u);
   assert.match(
     app,
     /getElementById\(target\)[\s\S]*?scrollIntoView\(\{ block: "start", behavior: "instant" \}\)/u,
@@ -1407,7 +1472,7 @@ test("X Nhân remains a distinct personal-product section with two product route
   assert.match(app, /href=\{xNhanHref\("\/xnhan", locale\)\}/u);
   assert.match(app, /href=\{xNhanHref\("\/xnhan\/about", locale\)\}/u);
   assert.match(app, /<ol className="product-flow"/u);
-  assert.match(app, /<ul className="product-proofs"/u);
+  assert.match(app, /<ul\s+className="product-proofs"/u);
   assert.match(
     app,
     /className="product-name"[\s\S]*?copy\.product\.name[\s\S]*?className="product-new-badge"[\s\S]*?copy\.product\.badge/u,

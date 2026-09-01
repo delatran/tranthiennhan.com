@@ -16,6 +16,7 @@ const securityTxtSource = await readFile(
   new URL("public/.well-known/security.txt", root),
   "utf8",
 );
+const llmsTxtSource = await readFile(new URL("public/llms.txt", root), "utf8");
 const generatedBindingsSource = await readFile(
   new URL("worker-configuration.d.ts", root),
   "utf8",
@@ -242,6 +243,21 @@ test("keeps RFC 9116 discovery metadata actionable and short lived", () => {
     expiresAt - Date.now() < oneYearMs,
     "security.txt expiry must remain less than one year away",
   );
+});
+
+test("publishes a source-bounded llms.txt with every canonical product page", () => {
+  assert.match(llmsTxtSource, /^# Trần Thiện Nhân — AI Engineer$/mu);
+  assert.match(llmsTxtSource, /source-bounded/iu);
+  assert.match(llmsTxtSource, /Do not infer unpublished performance figures/iu);
+
+  for (const url of [
+    "https://tranthiennhan.com/en",
+    "https://tranthiennhan.com/vi",
+    "https://tranthiennhan.com/xnhan",
+    "https://tranthiennhan.com/xnhan/about",
+  ]) {
+    assert.match(llmsTxtSource, new RegExp(`\\(${url.replaceAll(".", "\\.")}\\)`, "u"));
+  }
 });
 
 test("keeps the bounded production assets, AI, metrics, visitor D1, daily cron, and rate-limit bindings", () => {

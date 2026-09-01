@@ -3,7 +3,10 @@ import { useEffect } from "react";
 export function usePortfolioReveal(locale) {
   useEffect(() => {
     const nodes = document.querySelectorAll("[data-reveal]");
-    if (!("IntersectionObserver" in window)) {
+    if (
+      window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ||
+      !("IntersectionObserver" in window)
+    ) {
       nodes.forEach((node) => node.classList.add("is-visible"));
       return undefined;
     }

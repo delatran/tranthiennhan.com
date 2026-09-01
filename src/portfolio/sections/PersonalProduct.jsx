@@ -12,7 +12,7 @@ export function PersonalProduct({ copy, locale }) {
       <div className="section-layout">
         <SectionRail index="03" label={copy.product.eyebrow} />
         <div className="section-main product-main">
-          <div className="product-spotlight" data-reveal>
+          <div className="product-spotlight" data-reveal="feature">
             <div className="product-copy">
               <p className="product-name">
                 <span>{copy.product.name}</span>
@@ -56,7 +56,11 @@ export function PersonalProduct({ copy, locale }) {
             </ol>
           </div>
 
-          <ul className="product-proofs" aria-label={copy.product.proofsLabel} data-reveal>
+          <ul
+            className="product-proofs"
+            aria-label={copy.product.proofsLabel}
+            data-reveal="stagger"
+          >
             {copy.product.proofs.map((proof, index) => (
               <li key={proof.title}>
                 <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>

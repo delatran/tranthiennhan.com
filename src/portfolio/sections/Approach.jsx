@@ -6,11 +6,11 @@ export function Approach({ copy }) {
       <div className="section-layout">
         <SectionRail index="05" label={copy.about.eyebrow} />
         <div className="section-main approach-main">
-          <div className="approach-intro" data-reveal>
+          <div className="approach-intro" data-reveal="heading">
             <h2 id="approach-title" tabIndex="-1">{copy.about.title}</h2>
             <p>{copy.about.body}</p>
           </div>
-          <ol className="principles" data-reveal>
+          <ol className="principles" data-reveal="stagger">
             {copy.about.principles.map((principle) => (
               <li key={principle.index}>
                 <span>{principle.index}</span>

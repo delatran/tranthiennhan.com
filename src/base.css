@@ -29,6 +29,11 @@
   --focus-on-dark: #99c68f;
   --shadow-color: rgb(13 25 13 / 20%);
   --shadow-color-strong: rgb(13 25 13 / 26%);
+  --motion-duration-fast: 160ms;
+  --motion-duration-medium: 420ms;
+  --motion-duration-slow: 680ms;
+  --motion-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --page-gutter: clamp(1.35rem, 3.6vw, 3.5rem);
   --max-width: 94rem;
 }
@@ -163,4 +168,10 @@ button {
 
 .skip-link:focus {
   transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skip-link {
+    transition: none;
+  }
 }

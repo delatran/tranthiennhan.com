@@ -47,6 +47,7 @@ const requiredProductionFiles = [
   "public/assets/portrait-icon-20d683e7-512.png",
   "public/assets/ptit-mark-3ae2f7aa.png",
   "public/assets/ptit-mark-2x-a6a58dca.png",
+  "public/llms.txt",
   "public/robots.txt",
   "public/sitemap.xml",
   "scripts/build-localized-shells.mjs",

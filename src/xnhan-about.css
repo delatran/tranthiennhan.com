@@ -1,6 +1,6 @@
 .xnhan-about-app {
   --about-reading-width: 94rem;
-  --about-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --about-ease-out: var(--motion-ease-out);
 
   min-height: 100vh;
   color: var(--text-primary);
@@ -590,15 +590,22 @@ html[lang="en"] .xnhan-about-title-line > span {
   border-bottom: 1px solid var(--text-primary);
   transition:
     color 170ms ease,
-    background-color 170ms ease,
-    padding 170ms var(--about-ease-out);
+    background-color 170ms ease;
+}
+
+.xnhan-about-cta-actions a svg {
+  transition: transform 170ms var(--about-ease-out);
 }
 
 .xnhan-about-cta-actions a:hover,
 .xnhan-about-cta-actions a:focus-visible {
-  padding-inline: 0.9rem;
   color: var(--text-inverse);
   background: var(--surface-inverse);
+}
+
+.xnhan-about-cta-actions a:hover svg,
+.xnhan-about-cta-actions a:focus-visible svg {
+  transform: translate3d(0.15rem, -0.15rem, 0);
 }
 
 .xnhan-about-footer {
@@ -646,34 +653,91 @@ html[lang="en"] .xnhan-about-title-line > span {
 
 [data-about-reveal] {
   opacity: 0;
-  transform: translateY(1.1rem);
+  transform: translate3d(0, 1.25rem, 0);
   transition:
-    opacity 560ms var(--about-ease-out),
-    transform 560ms var(--about-ease-out);
+    opacity var(--motion-duration-medium) var(--motion-ease-standard),
+    transform 620ms var(--about-ease-out);
 }
 
 [data-about-reveal].is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
+}
+
+.xnhan-about-section-heading[data-about-reveal] > *,
+.xnhan-about-prose[data-about-reveal] > *,
+.xnhan-about-hero-aside[data-about-reveal] > *,
+.xnhan-about-cta-actions[data-about-reveal] > * {
+  opacity: 0;
+  transform: translate3d(0, 0.65rem, 0);
+  transition:
+    opacity var(--motion-duration-medium) var(--motion-ease-standard),
+    transform 540ms var(--about-ease-out);
+}
+
+.xnhan-about-section-heading[data-about-reveal].is-visible > *,
+.xnhan-about-prose[data-about-reveal].is-visible > *,
+.xnhan-about-hero-aside[data-about-reveal].is-visible > *,
+.xnhan-about-cta-actions[data-about-reveal].is-visible > * {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.xnhan-about-section-heading[data-about-reveal].is-visible > :nth-child(2),
+.xnhan-about-prose[data-about-reveal].is-visible > :nth-child(2),
+.xnhan-about-hero-aside[data-about-reveal].is-visible > :nth-child(2),
+.xnhan-about-cta-actions[data-about-reveal].is-visible > :nth-child(2) {
+  transition-delay: 90ms;
+}
+
+.xnhan-about-principle-list[data-about-reveal] li,
+.xnhan-about-stage-list[data-about-reveal] li {
+  opacity: 0;
+  transform: translate3d(0, 0.7rem, 0);
+  transition:
+    opacity var(--motion-duration-medium) var(--motion-ease-standard),
+    transform 560ms var(--about-ease-out);
+}
+
+.xnhan-about-principle-list[data-about-reveal].is-visible li,
+.xnhan-about-stage-list[data-about-reveal].is-visible li {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.xnhan-about-principle-list[data-about-reveal].is-visible li:nth-child(2),
+.xnhan-about-stage-list[data-about-reveal].is-visible li:nth-child(2) {
+  transition-delay: 90ms;
+}
+
+.xnhan-about-principle-list[data-about-reveal].is-visible li:nth-child(3),
+.xnhan-about-stage-list[data-about-reveal].is-visible li:nth-child(3) {
+  transition-delay: 180ms;
+}
+
+.xnhan-about-stage-list[data-about-reveal].is-visible li:nth-child(4) {
+  transition-delay: 270ms;
 }
 
 @keyframes xnhan-about-title-enter {
   from {
-    transform: translateY(0.35em);
+    transform: translate3d(0, 0.55em, 0);
   }
 
   to {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes xnhan-about-enter {
   from {
-    transform: translateY(0.4rem);
+    opacity: 0;
+    transform: translate3d(0, 0.65rem, 0);
   }
 
   to {
-    transform: translateY(0);
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -874,10 +938,22 @@ html[lang="en"] .xnhan-about-title-line > span {
     transition: none;
   }
 
+  .xnhan-about-section-heading[data-about-reveal] > *,
+  .xnhan-about-prose[data-about-reveal] > *,
+  .xnhan-about-hero-aside[data-about-reveal] > *,
+  .xnhan-about-cta-actions[data-about-reveal] > *,
+  .xnhan-about-principle-list[data-about-reveal] li,
+  .xnhan-about-stage-list[data-about-reveal] li {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
   .xnhan-about-back svg,
   .xnhan-about-product-link,
   .xnhan-about-locale button,
-  .xnhan-about-cta-actions a {
+  .xnhan-about-cta-actions a,
+  .xnhan-about-cta-actions a svg {
     transition: none;
     transform: none;
   }

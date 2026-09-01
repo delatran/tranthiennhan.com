@@ -5,7 +5,7 @@ export const content = {
     meta: {
       title: "Trần Thiện Nhân · AI Engineer",
       description:
-        "Trần Thiện Nhân is an AI Engineer working on customer-service call scoring, multimodal Document AI, and LoRA security research.",
+        "Trần Thiện Nhân designs and delivers applied AI systems for banking operations, including production call scoring, multimodal Document AI, and bounded LoRA security research.",
     },
     skip: "Skip to content",
     language: "Language",
@@ -25,7 +25,7 @@ export const content = {
       eyebrow: "AI Engineer",
       role: "AI Engineer · Applied AI systems",
       statement:
-        "I work with business teams to turn requirements into AI workflows, APIs, tests, and systems people can use day to day.",
+        "I design and deliver applied AI systems for banking operations—from business requirements and architecture to prompts, schemas, APIs, data pipelines, integration, testing, and failure-path handling.",
       primary: "View selected projects",
       secondary: "Contact me",
       location: "Ho Chi Minh City, Vietnam",
@@ -35,44 +35,45 @@ export const content = {
           value: "In production",
           label: "Customer-service call scoring",
           note:
-            "Used by Customer Service to evaluate agents; estimated to save VND 180 million a year in operating costs.",
+            "Used in agent evaluation, with every deduction tied to transcript or technical evidence; estimated to reduce operating cost by VND 180 million a year.",
         },
         {
           value: "3 pipelines",
           label: "Multimodal Document AI",
           note:
-            "Synchronous and asynchronous processing; currently in development.",
+            "Synchronous and asynchronous processing with explicit recovery and service controls; currently in development.",
         },
         {
           value: "0.96875 AUROC",
           label: "LoRA backdoor screening study",
-          note: "Weight-only method, measured on eight valid test lineages.",
+          note:
+            "Weight-only result on eight valid test lineages, reported within a locked model-and-task boundary.",
         },
       ],
     },
     about: {
       eyebrow: "How I work",
-      title: "How I work on an AI project",
+      title: "From model capability to dependable system",
       body:
-        "In my current role, I work with business teams and the systems around the model, not only the model itself. I scope the problem, build the workflow and API, test failure cases, and support integration.",
+        "I treat the model as one component in a larger operating system. The work begins with a business contract, continues through the workflow and API, and ends only when outputs, failures, evidence, and integration paths are explicit.",
       principles: [
         {
           index: "01",
-          title: "Clarify the requirement",
+          title: "Define the operating contract",
           text:
-            "Work with the business team to define the input, the expected output, and where that output will be used.",
+            "Clarify the business decision, input and output schemas, evidence requirements, and the system that will consume the result.",
         },
         {
           index: "02",
-          title: "Build the pipeline and API",
+          title: "Engineer the whole path",
           text:
-            "Design prompts and output schemas, implement the data flow, and connect the model’s output to the surrounding systems.",
+            "Design prompts, data pipelines, APIs, storage, and orchestration as one flow rather than treating model inference as the product.",
         },
         {
           index: "03",
-          title: "Test what can go wrong",
+          title: "Make evidence and failure visible",
           text:
-            "Validate outputs, retry recoverable failures, prevent duplicate batch work, and add the logs and health checks needed to support the service.",
+            "Validate structured outputs, bound correction and retries, prevent duplicate work, and expose the logs, health checks, and evidence needed to trust the service.",
         },
       ],
     },
@@ -80,7 +81,7 @@ export const content = {
       eyebrow: "Background",
       title: "Experience and education",
       intro:
-        "I currently work in the Technology Division at Kien Long Bank. Before that, I completed an IT internship at Mercedes-Benz Vietnam. I earned an Information Security degree at PTIT and am now pursuing a master’s degree in Information Systems.",
+        "I currently own end-to-end applied AI delivery in KienlongBank’s Technology Division. My foundation spans enterprise IT operations, Information Security, and current master’s study in Information Systems.",
       roles: [
         {
           role: "R&D Solutions Specialist",
@@ -90,10 +91,11 @@ export const content = {
             "Technology Division · Kien Long Commercial Joint Stock Bank",
           dates: "May 2025 to present",
           summary:
-            "I build AI systems for banking teams, from clarifying requirements to implementation, integration, and testing.",
+            "I deliver applied AI systems for banking operations across requirements, architecture, prompts, schemas, APIs, data pipelines, integration, testing, and failure paths.",
           highlights: [
-            "Built and launched the customer-service call-quality scoring system now used by Customer Service to evaluate agents.",
-            "Designed and implemented three Multimodal Document AI pipelines for business PDFs; the project is currently in development.",
+            "Built and deployed the customer-service call-quality scoring system now used by Customer Service in agent evaluations, with an estimated VND 180 million annual operating-cost reduction.",
+            "Designed three Multimodal Document AI pipelines and synchronous/asynchronous PDF workflows; the project remains in development.",
+            "Implemented the reliability layer around AI inference: structured outputs, validation, retries, duplicate prevention, observability, and integration controls.",
           ],
           tags: [
             "GenAI",
@@ -160,12 +162,64 @@ export const content = {
           level: "Upper-intermediate",
         },
       ],
+      capabilitiesLabel: "Capability map",
+      capabilitiesTitle: "The system around the model",
+      capabilitiesIntro:
+        "My strongest work sits where model behavior, backend engineering, evaluation, and operational controls meet.",
+      capabilities: [
+        {
+          title: "Applied AI and evaluation",
+          summary:
+            "Designing multimodal, document, speech, and language workflows with explicit output and evidence contracts.",
+          items: [
+            "Generative AI",
+            "Multimodal LLM",
+            "Document AI",
+            "Speech / NLP",
+            "Structured outputs",
+            "Guardrails",
+            "LLM evaluation",
+            "Model security",
+          ],
+        },
+        {
+          title: "Backend and orchestration",
+          summary:
+            "Turning model calls into services with controlled state, recovery paths, and integration boundaries.",
+          items: [
+            "FastAPI",
+            "Pydantic",
+            "REST API",
+            "PostgreSQL",
+            "Redis",
+            "asyncio / workers",
+            "LangGraph",
+            "Retry / DLQ",
+            "Health checks",
+          ],
+        },
+        {
+          title: "ML and platform foundations",
+          summary:
+            "Building and testing ML systems across model tooling, document processing, and deployable environments.",
+          items: [
+            "Python",
+            "PyTorch",
+            "scikit-learn",
+            "Transformers / PEFT",
+            "LoRA",
+            "Google Gemini",
+            "PyMuPDF",
+            "Docker / Linux",
+          ],
+        },
+      ],
     },
     work: {
       eyebrow: "Selected projects",
       title: "Selected AI projects",
       intro:
-        "The call-scoring system is in production; Document AI is still being built; the LoRA audit is complete. Each case explains the problem, what I did, and where it stands today.",
+        "Three projects, three evidence states: a production service, an in-development platform, and completed bounded research. Each case exposes the system flow, my contribution, the result, and the limit of the claim.",
       labels: {
         index: "Project index",
         period: "Project period",
@@ -174,6 +228,7 @@ export const content = {
         outcome: "Current result",
         scope: "What to keep in mind",
         metrics: "Key facts",
+        flow: "System flow",
         stack: "Technology",
       },
       items: [
@@ -189,7 +244,7 @@ export const content = {
           goal:
             "Score more calls consistently while keeping every deduction traceable to the transcript or a technical signal.",
           contribution:
-            "I built the LangGraph workflow for transcription, speaker handling, intent classification, and criterion-level LLM scoring. FastAPI serves the results, PostgreSQL stores them, and the workflow validates structured outputs, retries recoverable failures, and avoids duplicate batch processing.",
+            "I designed and implemented the end-to-end LangGraph pipeline, FastAPI service, and PostgreSQL data layer. The workflow validates structured outputs, binds every deduction to evidence, applies bounded correction and retries, and keeps scheduled batch processing idempotent.",
           outcome:
             "The system is in production, and Customer Service uses its output in the agent-evaluation process. The estimated reduction in annual operating cost is VND 180 million.",
           scope:
@@ -202,6 +257,32 @@ export const content = {
             {
               value: "Transcript or signal",
               label: "Source for each deduction",
+            },
+            {
+              value: "Idempotent",
+              label: "Scheduled batch processing",
+            },
+          ],
+          workflow: [
+            {
+              index: "01",
+              title: "Build the speech record",
+              text: "Speech-to-text, speaker diarization and timestamps, then speaker-role assignment.",
+            },
+            {
+              index: "02",
+              title: "Route the business context",
+              text: "Classify intent before applying general and intent-specific scoring criteria.",
+            },
+            {
+              index: "03",
+              title: "Produce traceable scores",
+              text: "Return a structured result in which each deduction points to transcript or technical evidence.",
+            },
+            {
+              index: "04",
+              title: "Control production failure",
+              text: "Use bounded correction, retries, and idempotent scheduled batches around the scoring flow.",
             },
           ],
           stack: [
@@ -224,14 +305,37 @@ export const content = {
           goal:
             "Extract structured data from mixed-layout and long business PDFs, with a clear recovery path when processing fails.",
           contribution:
-            "I built page routing, structured extraction, validation, and long-document handling across three pipelines with Gemini, FastAPI, Pydantic, and PyMuPDF. Redis workers handle asynchronous jobs, retries, timeouts, failed-job queues, callbacks, redacted logs, and health checks.",
+            "I built page routing, structured extraction, schema validation, normalization, chunking and merge, and long-document fallback across three pipelines. The service layer adds Redis workers, retry/DLQ, timeouts, backpressure, document-level claims, quota circuit breaking, authenticated callbacks, redacted logs, health checks, and token/latency telemetry.",
           outcome:
-            "The current build has three document pipelines with synchronous and asynchronous APIs.",
+            "The current build has three document pipelines and both synchronous and asynchronous APIs, with explicit recovery and observability controls around processing.",
           scope:
             "This work is still in development, so I do not describe it as production or claim UAT, accuracy, latency, or cost savings.",
           metrics: [
             { value: "3", label: "Document pipelines" },
             { value: "Sync + async", label: "Request modes" },
+            { value: "Retry to DLQ", label: "Failed-job recovery path" },
+          ],
+          workflow: [
+            {
+              index: "01",
+              title: "Classify and route",
+              text: "Identify page type and send each page to the appropriate extraction path.",
+            },
+            {
+              index: "02",
+              title: "Extract and validate",
+              text: "Use multimodal extraction with Pydantic schema validation before accepting structured data.",
+            },
+            {
+              index: "03",
+              title: "Assemble long documents",
+              text: "Normalize, chunk and merge results, with fallback handling and document-level claims.",
+            },
+            {
+              index: "04",
+              title: "Operate under pressure",
+              text: "Bound async work with retry/DLQ, timeouts, backpressure, quota controls, callbacks, and telemetry.",
+            },
           ],
           stack: [
             "Google Gemini",
@@ -253,7 +357,7 @@ export const content = {
           goal:
             "Test whether adapter weights and trigger-blind behavior can identify backdoored LoRA adapters before deployment.",
           contribution:
-            "I compared five weight-based features with trigger-blind behavioral probes on Qwen2.5-1.5B-Instruct using MASSIVE EN-VI. I kept validation and test lineages separate, fixed the decision threshold before testing, and checked provenance before including a run.",
+            "I combined five weight-based features with fixed-target trigger-blind behavioral probes under fail-closed provenance checks. Validation and test lineages stayed separate, the threshold was locked before testing, and the protocol included 12 gray-box adaptive-attack conditions across four cross-lingual EN-VI cells.",
           outcome:
             "The experiment included 36 clean/backdoored pairs. Twenty-five lineages passed quality control, and eight valid lineages entered the test set. The weight-only method performed best; learned fusion did not improve on it after 5,000 cluster-bootstrap replicates.",
           scope:
@@ -263,6 +367,28 @@ export const content = {
             { value: "0.975", label: "PR-AUC on valid test" },
             { value: "0.75", label: "MCC on valid test" },
             { value: "25", label: "Lineages passing QC" },
+          ],
+          workflow: [
+            {
+              index: "01",
+              title: "Screen without the trigger",
+              text: "Combine five weight features with fixed-target behavioral probes that do not require the hidden trigger.",
+            },
+            {
+              index: "02",
+              title: "Lock the protocol",
+              text: "Separate model lineages, freeze the validation threshold, and fail closed when provenance is incomplete.",
+            },
+            {
+              index: "03",
+              title: "Test the fixed decision",
+              text: "Evaluate eight valid test lineages and compare fusion through 5,000 cluster-bootstrap replicates.",
+            },
+            {
+              index: "04",
+              title: "Stress the boundary",
+              text: "Run 12 gray-box adaptive-attack conditions across four EN-VI cells and document external-validity limits.",
+            },
           ],
           stack: [
             "Python",
@@ -409,7 +535,7 @@ export const content = {
     meta: {
       title: "Trần Thiện Nhân · Kỹ sư AI",
       description:
-        "Trần Thiện Nhân là kỹ sư AI, đã đưa hệ thống chấm điểm cuộc gọi vào vận hành, đang phát triển Document AI đa phương thức và đã hoàn thành nghiên cứu về backdoor trong LoRA.",
+        "Trần Thiện Nhân thiết kế và triển khai hệ thống AI ứng dụng cho nghiệp vụ ngân hàng, gồm chấm điểm cuộc gọi đang vận hành, Document AI đa phương thức và nghiên cứu bảo mật LoRA có phạm vi xác định.",
     },
     skip: "Đi đến nội dung chính",
     language: "Ngôn ngữ",
@@ -429,7 +555,7 @@ export const content = {
       eyebrow: "Kỹ sư AI",
       role: "Kỹ sư AI · Hệ thống AI ứng dụng",
       statement:
-        "Tôi làm việc cùng các đơn vị nghiệp vụ để biến yêu cầu thành luồng xử lý AI, API, bài kiểm thử và hệ thống có thể dùng trong công việc hằng ngày.",
+        "Tôi thiết kế và triển khai trọn vẹn các hệ thống AI ứng dụng cho nghiệp vụ ngân hàng — từ yêu cầu, kiến trúc, prompt và schema đến API, data pipeline, tích hợp, kiểm thử và đường xử lý lỗi.",
       primary: "Xem dự án tiêu biểu",
       secondary: "Liên hệ với tôi",
       location: "TP. Hồ Chí Minh, Việt Nam",
@@ -439,45 +565,45 @@ export const content = {
           value: "Đang vận hành",
           label: "Chấm điểm chất lượng cuộc gọi CSKH",
           note:
-            "Đơn vị Dịch vụ Khách hàng dùng kết quả để đánh giá tổng đài viên. Hệ thống được ước tính giúp giảm 180 triệu đồng chi phí vận hành mỗi năm.",
+            "Được dùng trong đánh giá tổng đài viên; mỗi điểm trừ đều gắn với bằng chứng hội thoại hoặc kỹ thuật. Mức giảm chi phí ước tính là 180 triệu đồng mỗi năm.",
         },
         {
           value: "3 luồng xử lý",
           label: "Document AI đa phương thức",
           note:
-            "Có luồng xử lý đồng bộ và bất đồng bộ; hiện vẫn đang phát triển.",
+            "Xử lý đồng bộ và bất đồng bộ, có đường phục hồi cùng kiểm soát dịch vụ rõ ràng; hiện vẫn đang phát triển.",
         },
         {
           value: "AUROC 0.96875",
           label: "Nghiên cứu sàng lọc backdoor trong LoRA",
           note:
-            "Phương pháp chỉ dùng đặc trưng trọng số, đo trên tám nhóm kiểm thử hợp lệ.",
+            "Kết quả weight-only trên tám nhóm kiểm thử hợp lệ, chỉ được diễn giải trong model và tác vụ đã khóa.",
         },
       ],
     },
     about: {
       eyebrow: "Cách tôi làm việc",
-      title: "Cách tôi triển khai một dự án AI",
+      title: "Từ năng lực mô hình đến hệ thống đáng tin cậy",
       body:
-        "Trong công việc hiện tại, tôi phối hợp với đơn vị nghiệp vụ và phụ trách cả hệ thống xung quanh mô hình: làm rõ bài toán, xây luồng xử lý và API, kiểm thử tình huống lỗi và hỗ trợ tích hợp.",
+        "Tôi xem mô hình là một thành phần của hệ thống vận hành lớn hơn. Công việc bắt đầu bằng việc chốt yêu cầu với đơn vị nghiệp vụ, đi qua workflow và API, rồi chỉ hoàn tất khi đầu ra, tình huống lỗi, bằng chứng và đường tích hợp đều được xác định rõ.",
       principles: [
         {
           index: "01",
-          title: "Làm rõ yêu cầu",
+          title: "Chốt hợp đồng vận hành",
           text:
-            "Cùng đơn vị nghiệp vụ xác định dữ liệu đầu vào, kết quả cần trả về và kết quả đó sẽ được dùng ở đâu.",
+            "Làm rõ quyết định nghiệp vụ, schema đầu vào và đầu ra, yêu cầu bằng chứng cùng hệ thống sẽ tiếp nhận kết quả.",
         },
         {
           index: "02",
-          title: "Xây luồng xử lý và API",
+          title: "Xây dựng trọn vẹn luồng hệ thống",
           text:
-            "Thiết kế prompt, cấu trúc dữ liệu trả về và API; sau đó kết nối kết quả của mô hình với các hệ thống liên quan.",
+            "Thiết kế prompt, data pipeline, API, lưu trữ và điều phối như một luồng thống nhất, thay vì xem lần gọi mô hình là sản phẩm.",
         },
         {
           index: "03",
-          title: "Kiểm thử tình huống lỗi",
+          title: "Hiển thị rõ bằng chứng và lỗi",
           text:
-            "Kiểm tra đầu ra, thử lại lỗi có thể phục hồi, tránh xử lý trùng và bổ sung nhật ký cùng cơ chế kiểm tra trạng thái hệ thống.",
+            "Kiểm tra đầu ra có cấu trúc, giới hạn số lần hiệu chỉnh và thử lại, tránh xử lý trùng, đồng thời cung cấp log, health check và bằng chứng cần thiết để vận hành dịch vụ đáng tin cậy.",
         },
       ],
     },
@@ -485,7 +611,7 @@ export const content = {
       eyebrow: "Hồ sơ nghề nghiệp",
       title: "Kinh nghiệm và học vấn",
       intro:
-        "Tôi hiện làm việc tại Khối Công nghệ, Ngân hàng TMCP Kiên Long. Trước đó, tôi thực tập CNTT tại Mercedes-Benz Việt Nam. Tôi tốt nghiệp ngành An toàn thông tin tại PTIT và đang theo học cao học ngành Hệ thống thông tin.",
+        "Tôi hiện phụ trách xuyên suốt việc triển khai AI ứng dụng tại Khối Công nghệ của KienlongBank. Nền tảng của tôi kết hợp vận hành CNTT doanh nghiệp, An toàn thông tin và chương trình cao học Hệ thống thông tin đang theo học.",
       roles: [
         {
           role: "Chuyên viên Nghiên cứu và Phát triển giải pháp",
@@ -494,10 +620,11 @@ export const content = {
           organizationDetail: "Khối Công nghệ · Ngân hàng TMCP Kiên Long",
           dates: "05.2025 đến nay",
           summary:
-            "Tôi xây dựng các hệ thống AI cho nghiệp vụ ngân hàng, từ làm rõ yêu cầu đến tích hợp và kiểm thử.",
+            "Tôi triển khai hệ thống AI ứng dụng cho nghiệp vụ ngân hàng từ yêu cầu, kiến trúc, prompt và schema đến API, data pipeline, tích hợp, kiểm thử và đường xử lý lỗi.",
           highlights: [
-            "Xây dựng và đưa hệ thống chấm điểm chất lượng cuộc gọi vào vận hành; đơn vị Dịch vụ Khách hàng đang dùng kết quả để đánh giá tổng đài viên.",
-            "Thiết kế và triển khai ba luồng xử lý Document AI đa phương thức cho PDF nghiệp vụ; dự án hiện vẫn đang phát triển.",
+            "Xây dựng và đưa hệ thống chấm điểm chất lượng cuộc gọi vào vận hành; đơn vị Dịch vụ Khách hàng dùng kết quả trong đánh giá tổng đài viên, với mức giảm chi phí vận hành ước tính 180 triệu đồng mỗi năm.",
+            "Thiết kế ba pipeline Document AI đa phương thức và luồng PDF đồng bộ/bất đồng bộ; dự án hiện vẫn đang phát triển.",
+            "Triển khai lớp bảo đảm độ tin cậy quanh suy luận AI: đầu ra có cấu trúc, kiểm tra hợp lệ, thử lại, chống xử lý trùng, khả năng quan sát và kiểm soát tích hợp.",
           ],
           tags: [
             "GenAI",
@@ -563,12 +690,64 @@ export const content = {
           level: "Cận cao cấp",
         },
       ],
+      capabilitiesLabel: "Bản đồ năng lực",
+      capabilitiesTitle: "Hệ thống xung quanh mô hình",
+      capabilitiesIntro:
+        "Năng lực nổi bật nhất của tôi nằm ở giao điểm giữa hành vi mô hình, backend, đánh giá và các kiểm soát vận hành.",
+      capabilities: [
+        {
+          title: "AI ứng dụng và đánh giá",
+          summary:
+            "Thiết kế luồng đa phương thức, tài liệu, giọng nói và ngôn ngữ với hợp đồng đầu ra cùng bằng chứng rõ ràng.",
+          items: [
+            "Generative AI",
+            "Multimodal LLM",
+            "Document AI",
+            "Speech / NLP",
+            "Structured outputs",
+            "Guardrails",
+            "Đánh giá LLM",
+            "An toàn mô hình",
+          ],
+        },
+        {
+          title: "Backend và điều phối",
+          summary:
+            "Biến lần gọi mô hình thành dịch vụ có trạng thái được kiểm soát, đường phục hồi và ranh giới tích hợp rõ ràng.",
+          items: [
+            "FastAPI",
+            "Pydantic",
+            "REST API",
+            "PostgreSQL",
+            "Redis",
+            "asyncio / workers",
+            "LangGraph",
+            "Retry / DLQ",
+            "Health checks",
+          ],
+        },
+        {
+          title: "Nền tảng ML và triển khai",
+          summary:
+            "Xây dựng và kiểm thử hệ thống ML xuyên suốt công cụ mô hình, xử lý tài liệu và môi trường có thể triển khai.",
+          items: [
+            "Python",
+            "PyTorch",
+            "scikit-learn",
+            "Transformers / PEFT",
+            "LoRA",
+            "Google Gemini",
+            "PyMuPDF",
+            "Docker / Linux",
+          ],
+        },
+      ],
     },
     work: {
       eyebrow: "Dự án tiêu biểu",
       title: "Ba dự án AI tiêu biểu",
       intro:
-        "Hệ thống chấm điểm cuộc gọi đã vận hành; Document AI đang phát triển; nghiên cứu LoRA đã hoàn thành. Mỗi dự án nêu rõ bài toán, phần tôi làm và trạng thái hiện tại.",
+        "Ba dự án, ba trạng thái bằng chứng: một dịch vụ đang vận hành, một nền tảng đang phát triển và một nghiên cứu đã hoàn thành trong phạm vi được khóa. Mỗi dự án trình bày luồng hệ thống, phần tôi làm, kết quả và giới hạn của kết luận.",
       labels: {
         index: "Danh mục dự án",
         period: "Thời gian thực hiện",
@@ -577,6 +756,7 @@ export const content = {
         outcome: "Kết quả hiện tại",
         scope: "Điều cần lưu ý",
         metrics: "Con số chính",
+        flow: "Luồng hệ thống",
         stack: "Công nghệ",
       },
       items: [
@@ -592,7 +772,7 @@ export const content = {
           goal:
             "Tự động chấm nhiều cuộc gọi hơn, nhưng mỗi điểm bị trừ vẫn phải truy được về đoạn hội thoại hoặc tín hiệu kỹ thuật cụ thể.",
           contribution:
-            "Tôi dùng LangGraph để điều phối việc chuyển giọng nói thành văn bản, phân tách người nói và gán vai hội thoại, phân loại ý định rồi chấm theo từng tiêu chí. FastAPI cung cấp kết quả qua API, PostgreSQL lưu dữ liệu; luồng xử lý còn kiểm tra đầu ra, thử lại khi lỗi và tránh chạy trùng theo lô.",
+            "Tôi thiết kế và triển khai toàn bộ pipeline LangGraph, dịch vụ FastAPI và lớp dữ liệu PostgreSQL. Workflow kiểm tra đầu ra có cấu trúc, buộc mỗi điểm trừ gắn với bằng chứng, áp dụng hiệu chỉnh và thử lại có giới hạn, đồng thời bảo đảm các lô chạy theo lịch không xử lý trùng.",
           outcome:
             "Hệ thống đang vận hành và được đơn vị Dịch vụ Khách hàng dùng trong quy trình đánh giá tổng đài viên. Mức giảm chi phí vận hành được ước tính là 180 triệu đồng mỗi năm.",
           scope:
@@ -605,6 +785,32 @@ export const content = {
             {
               value: "Hội thoại hoặc tín hiệu",
               label: "Căn cứ cho mỗi điểm trừ",
+            },
+            {
+              value: "Idempotent",
+              label: "Xử lý theo lô có lịch",
+            },
+          ],
+          workflow: [
+            {
+              index: "01",
+              title: "Tạo hồ sơ lời thoại",
+              text: "Speech-to-text, speaker diarization và timestamp, sau đó gán vai hội thoại.",
+            },
+            {
+              index: "02",
+              title: "Định tuyến ngữ cảnh nghiệp vụ",
+              text: "Phân loại ý định trước khi áp dụng tiêu chí chấm chung và tiêu chí chuyên biệt.",
+            },
+            {
+              index: "03",
+              title: "Sinh điểm số truy vết được",
+              text: "Trả kết quả có cấu trúc, trong đó mỗi điểm trừ dẫn về bằng chứng hội thoại hoặc kỹ thuật.",
+            },
+            {
+              index: "04",
+              title: "Kiểm soát lỗi trong vận hành",
+              text: "Bao quanh luồng chấm điểm bằng hiệu chỉnh và thử lại có giới hạn, đồng thời giữ các lô chạy theo lịch không xử lý trùng.",
             },
           ],
           stack: [
@@ -627,14 +833,37 @@ export const content = {
           goal:
             "Xử lý tài liệu dài và nhiều kiểu bố cục, đồng thời có phương án phục hồi rõ ràng khi một bước trích xuất thất bại.",
           contribution:
-            "Tôi xây phần phân loại trang, trích xuất và kiểm tra dữ liệu, chuẩn hóa kết quả, chia và ghép tài liệu, rồi thêm phương án dự phòng cho tài liệu dài bằng Gemini, FastAPI, Pydantic và PyMuPDF. Hệ thống dùng Redis cùng worker bất đồng bộ để xử lý tác vụ, thử lại, giới hạn thời gian, hàng đợi lỗi và callback; đồng thời che dữ liệu nhạy cảm trong log và kiểm tra trạng thái dịch vụ.",
+            "Tôi xây phần định tuyến trang, trích xuất có cấu trúc, kiểm tra schema, chuẩn hóa, chia/ghép và phương án dự phòng cho tài liệu dài trên ba pipeline. Lớp dịch vụ bổ sung worker Redis, retry/DLQ, timeout, backpressure, cơ chế claim ở cấp tài liệu, circuit breaker cho quota, callback xác thực, log có che dữ liệu, health check và telemetry về token/độ trễ.",
           outcome:
-            "Bản hiện tại có ba luồng xử lý, với API đồng bộ và bất đồng bộ.",
+            "Bản hiện tại có ba pipeline cùng API đồng bộ và bất đồng bộ, với các kiểm soát phục hồi và khả năng quan sát được thiết kế quanh quá trình xử lý.",
           scope:
             "Dự án chưa được đưa vào vận hành; phần này không đưa ra số liệu về độ chính xác, độ trễ, UAT hoặc tiết kiệm chi phí.",
           metrics: [
             { value: "3", label: "Luồng xử lý tài liệu" },
             { value: "Đồng bộ + bất đồng bộ", label: "Cách xử lý yêu cầu" },
+            { value: "Retry đến DLQ", label: "Đường phục hồi tác vụ lỗi" },
+          ],
+          workflow: [
+            {
+              index: "01",
+              title: "Phân loại và định tuyến",
+              text: "Xác định loại trang rồi đưa từng trang vào đường trích xuất phù hợp.",
+            },
+            {
+              index: "02",
+              title: "Trích xuất và kiểm tra",
+              text: "Dùng trích xuất đa phương thức, sau đó kiểm tra dữ liệu theo schema Pydantic trước khi chấp nhận kết quả.",
+            },
+            {
+              index: "03",
+              title: "Ghép tài liệu dài",
+              text: "Chuẩn hóa, chia và ghép kết quả, kèm đường dự phòng và cơ chế claim ở cấp tài liệu.",
+            },
+            {
+              index: "04",
+              title: "Vận hành dưới tải",
+              text: "Giới hạn tác vụ bất đồng bộ bằng retry/DLQ, timeout, backpressure, kiểm soát quota, callback và telemetry.",
+            },
           ],
           stack: [
             "Google Gemini",
@@ -656,7 +885,7 @@ export const content = {
           goal:
             "Đánh giá xem đặc trưng trọng số và phép thử hành vi có thể nhận ra LoRA adapter bị cài backdoor hay không.",
           contribution:
-            "Tôi so sánh năm đặc trưng từ trọng số với các phép thử hành vi không cần biết trước trigger trên Qwen2.5-1.5B-Instruct. Để tránh rò rỉ giữa tập xác thực và tập kiểm thử, tôi tách các nhóm mô hình có cùng nguồn gốc rồi chốt ngưỡng quyết định trước khi xem kết quả kiểm thử.",
+            "Tôi kết hợp năm đặc trưng trọng số với các phép dò hành vi fixed-target không cần biết trigger, dưới cơ chế kiểm tra nguồn gốc theo nguyên tắc fail-closed. Các dòng mô hình dùng cho validation và test được tách riêng; ngưỡng được khóa trước khi kiểm thử; protocol gồm 12 điều kiện tấn công thích nghi gray-box trên bốn ô EN-VI.",
           outcome:
             "Thực nghiệm gồm 36 cặp mô hình sạch và bị cài backdoor; 25 nhóm qua kiểm tra chất lượng. Trên tám nhóm kiểm thử hợp lệ, phương pháp dùng đặc trưng trọng số đạt AUROC 0.96875, PR-AUC 0.975 và MCC 0.75. Phương pháp learned fusion kết hợp tín hiệu hành vi không cải thiện so với cách chỉ dùng đặc trưng trọng số sau 5.000 lượt bootstrap theo cụm.",
           scope:
@@ -666,6 +895,28 @@ export const content = {
             { value: "0.975", label: "PR-AUC trên tập kiểm thử hợp lệ" },
             { value: "0.75", label: "MCC trên tập kiểm thử hợp lệ" },
             { value: "25", label: "Nhóm qua kiểm tra chất lượng" },
+          ],
+          workflow: [
+            {
+              index: "01",
+              title: "Sàng lọc không cần trigger",
+              text: "Kết hợp năm đặc trưng trọng số với các phép dò hành vi fixed-target không cần biết trigger ẩn.",
+            },
+            {
+              index: "02",
+              title: "Khóa quy trình đánh giá",
+              text: "Tách các dòng mô hình, đóng băng ngưỡng validation và dừng theo nguyên tắc fail-closed khi nguồn gốc chưa đầy đủ.",
+            },
+            {
+              index: "03",
+              title: "Kiểm thử quyết định đã chốt",
+              text: "Đánh giá tám dòng mô hình kiểm thử hợp lệ và so sánh fusion qua 5.000 lượt bootstrap theo cụm.",
+            },
+            {
+              index: "04",
+              title: "Kiểm tra độ bền của ranh giới",
+              text: "Chạy 12 điều kiện tấn công thích nghi gray-box trên bốn ô EN-VI và ghi rõ giới hạn khái quát hóa.",
+            },
           ],
           stack: [
             "Python",

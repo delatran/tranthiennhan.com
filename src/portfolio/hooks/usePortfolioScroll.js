@@ -54,45 +54,70 @@ export function useActivePortfolioSection(locale) {
   const [activeSection, setActiveSection] = useState("top");
 
   useEffect(() => {
-    let animationFrame = 0;
+    const sections = PORTFOLIO_SECTION_IDS
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+    if (sections.length === 0 || !("IntersectionObserver" in window)) {
+      return undefined;
+    }
 
-    const updateActiveSection = () => {
-      const headerHeight =
-        document.querySelector(".site-header")?.getBoundingClientRect().height ?? 0;
-      const activationLine = headerHeight + 32;
-      let nextSection = "top";
+    let observer;
+    let resizeFrame = 0;
+    const intersectingSections = new Set();
 
-      PORTFOLIO_SECTION_IDS.forEach((id) => {
-        const section = document.getElementById(id);
-        if (section && section.getBoundingClientRect().top <= activationLine) {
-          nextSection = id;
-        }
-      });
+    const observeActivationLine = () => {
+      observer?.disconnect();
+      intersectingSections.clear();
 
-      if (
-        window.innerHeight + window.scrollY >=
-        document.documentElement.scrollHeight - 2
-      ) {
-        nextSection = "contact";
-      }
+      const headerHeight = document.querySelector(".site-header")?.offsetHeight ?? 0;
+      const activationLine = Math.min(headerHeight + 32, window.innerHeight - 1);
+      const bottomMargin = Math.max(0, window.innerHeight - activationLine - 1);
 
-      setActiveSection((current) =>
-        current === nextSection ? current : nextSection,
+      observer = new window.IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) intersectingSections.add(entry.target.id);
+            else intersectingSections.delete(entry.target.id);
+          });
+
+          let nextSection;
+          for (
+            let index = PORTFOLIO_SECTION_IDS.length - 1;
+            index >= 0;
+            index -= 1
+          ) {
+            const id = PORTFOLIO_SECTION_IDS[index];
+            if (intersectingSections.has(id)) {
+              nextSection = id;
+              break;
+            }
+          }
+          if (!nextSection) return;
+
+          setActiveSection((current) =>
+            current === nextSection ? current : nextSection,
+          );
+        },
+        {
+          rootMargin: `-${activationLine}px 0px -${bottomMargin}px 0px`,
+          threshold: 0,
+        },
       );
+
+      sections.forEach((section) => observer.observe(section));
     };
 
-    const scheduleUpdate = () => {
-      window.cancelAnimationFrame(animationFrame);
-      animationFrame = window.requestAnimationFrame(updateActiveSection);
+    const scheduleObserverRefresh = () => {
+      window.cancelAnimationFrame(resizeFrame);
+      resizeFrame = window.requestAnimationFrame(observeActivationLine);
     };
 
-    scheduleUpdate();
-    window.addEventListener("scroll", scheduleUpdate, { passive: true });
-    window.addEventListener("resize", scheduleUpdate);
+    observeActivationLine();
+    window.addEventListener("resize", scheduleObserverRefresh);
     return () => {
-      window.cancelAnimationFrame(animationFrame);
-      window.removeEventListener("scroll", scheduleUpdate);
-      window.removeEventListener("resize", scheduleUpdate);
+      window.cancelAnimationFrame(resizeFrame);
+      window.removeEventListener("resize", scheduleObserverRefresh);
+      observer?.disconnect();
     };
   }, [locale]);
 

@@ -1970,10 +1970,10 @@ test("makes long research interruptible without inventing persistence or provide
     /\.xnhan-locale-switch button\s*\{[^}]*(?:min-width|min-height):\s*2\.35rem/u,
   );
   assert.match(turnStyles, /@keyframes xnhan-progress[\s\S]*?transform:\s*translateX/u);
-  assert.match(styles, /@keyframes xnhan-enter[\s\S]*?transform:\s*translateY/u);
-  assert.doesNotMatch(
+  assert.match(styles, /@keyframes xnhan-enter[\s\S]*?transform:\s*translate3d/u);
+  assert.match(
     styles,
-    /@keyframes xnhan-enter\s*\{\s*from\s*\{[^}]*opacity:/u,
+    /@keyframes xnhan-enter\s*\{\s*from\s*\{[^}]*opacity:\s*0/u,
   );
   assert.match(
     turnStyles,

@@ -118,16 +118,78 @@
 }
 
 [data-reveal] {
+  --reveal-distance: 1.4rem;
+
   opacity: 0;
-  transform: translateY(2rem);
+  transform: translate3d(0, var(--reveal-distance), 0);
   transition:
-    opacity 620ms ease,
-    transform 720ms cubic-bezier(0.16, 1, 0.3, 1);
+    opacity var(--motion-duration-medium) var(--motion-ease-standard),
+    transform var(--motion-duration-slow) var(--motion-ease-out);
 }
 
 [data-reveal].is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
+}
+
+[data-reveal="heading"] {
+  --reveal-distance: 1.75rem;
+}
+
+[data-reveal="card"] {
+  --reveal-distance: 1.2rem;
+
+  transform: translate3d(0, var(--reveal-distance), 0) scale(0.99);
+}
+
+[data-reveal="card"].is-visible {
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+[data-reveal="rail"] {
+  --reveal-distance: 0.75rem;
+}
+
+[data-reveal="rail"] .section-rail-line {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 760ms var(--motion-ease-out) 100ms;
+}
+
+[data-reveal="rail"].is-visible .section-rail-line {
+  transform: scaleY(1);
+}
+
+[data-reveal="stagger"] > *,
+[data-reveal="split"] > * {
+  opacity: 0;
+  transform: translate3d(0, 0.8rem, 0);
+  transition:
+    opacity var(--motion-duration-medium) var(--motion-ease-standard),
+    transform 560ms var(--motion-ease-out);
+}
+
+[data-reveal="stagger"].is-visible > *,
+[data-reveal="split"].is-visible > * {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+[data-reveal="stagger"].is-visible > :nth-child(2),
+[data-reveal="split"].is-visible > :nth-child(2) {
+  transition-delay: 80ms;
+}
+
+[data-reveal="stagger"].is-visible > :nth-child(3) {
+  transition-delay: 160ms;
+}
+
+[data-reveal="stagger"].is-visible > :nth-child(4) {
+  transition-delay: 240ms;
+}
+
+[data-reveal="feature"] {
+  --reveal-distance: 1.1rem;
 }
 
 @media (max-width: 78rem) {
@@ -169,5 +231,20 @@
   [data-reveal] {
     opacity: 1;
     transform: none;
+    transition: none;
+  }
+
+  [data-reveal] *,
+  [data-reveal]::before,
+  [data-reveal]::after {
+    transition-delay: 0ms !important;
+  }
+
+  [data-reveal="rail"] .section-rail-line,
+  [data-reveal="stagger"] > *,
+  [data-reveal="split"] > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }

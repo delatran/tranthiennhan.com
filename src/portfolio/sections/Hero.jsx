@@ -28,7 +28,7 @@ export function Hero({ copy }) {
           </h1>
         </div>
 
-        <div className="hero-copy">
+        <div className="hero-copy" data-reveal="hero-copy">
           <p className="hero-role">{copy.hero.role}</p>
           <p className="hero-statement">{copy.hero.statement}</p>
           <div className="hero-actions">
@@ -57,7 +57,7 @@ export function Hero({ copy }) {
       <ul
         className="hero-proof-strip"
         aria-label={copy.hero.proofLabel}
-        data-reveal
+        data-reveal="stagger"
       >
         {copy.hero.proofs.map((proof) => (
           <li className="hero-proof" key={proof.label}>

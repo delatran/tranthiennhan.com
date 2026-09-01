@@ -10,7 +10,7 @@ export function Contact({ copy }) {
     <section className="contact-section ruled-section" id="contact" aria-labelledby="contact-title">
       <div className="section-layout">
         <SectionRail index="06" label={copy.contact.eyebrow} />
-        <div className="section-main contact-main" data-reveal>
+        <div className="section-main contact-main" data-reveal="split">
           <div className="contact-copy">
             <h2 id="contact-title" tabIndex="-1">{copy.contact.title}</h2>
             <p>{copy.contact.body}</p>

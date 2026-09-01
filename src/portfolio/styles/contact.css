@@ -71,15 +71,22 @@
   border-bottom: 1px solid var(--text-primary);
   transition:
     color 180ms ease,
-    background-color 180ms ease,
-    padding 180ms ease;
+    background-color 180ms ease;
+}
+
+.contact-link > svg {
+  transition: transform 180ms var(--motion-ease-out);
 }
 
 .contact-link:hover,
 .contact-link:focus-visible {
-  padding-inline: 1rem;
   color: var(--text-inverse);
   background: var(--surface-inverse);
+}
+
+.contact-link:hover > svg,
+.contact-link:focus-visible > svg {
+  transform: translate3d(0.15rem, -0.15rem, 0);
 }
 
 .contact-link-icon {
@@ -144,11 +151,6 @@
     padding-inline: 0;
   }
 
-  .contact-link:hover,
-.contact-link:focus-visible {
-    padding-inline: 0.55rem;
-  }
-
   .contact-link-icon {
     width: 2.5rem;
     height: 2.5rem;
@@ -158,4 +160,11 @@
     font-size: 0.76rem;
   }
 
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-link > svg {
+    transform: none;
+    transition: none;
+  }
 }
