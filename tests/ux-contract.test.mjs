@@ -27,6 +27,7 @@ async function source(relativePath) {
 
 const applicationSourcePaths = [
   "src/components/Header.jsx",
+  "src/components/LocaleFlag.jsx",
   "src/components/AskNhan.jsx",
   "src/components/modal-inertness.js",
   "src/components/navigation.js",
@@ -224,12 +225,25 @@ test("hashed assets have one unambiguous immutable cache policy", async () => {
   );
 });
 
-test("locale navigation uses real localized links and complete head metadata", async () => {
-  const [app, index, styles, localizedContent] = await Promise.all([
+test("locale navigation uses accessible flag links and complete head metadata", async () => {
+  const [
+    app,
+    index,
+    styles,
+    localizedContent,
+    baseStyles,
+    xnhanApp,
+    xnhanAboutApp,
+    localeFlag,
+  ] = await Promise.all([
     applicationSource(),
     source("index.html"),
     portfolioStyles(),
     source("src/content.js"),
+    source("src/base.css"),
+    source("src/XNhanApp.jsx"),
+    source("src/XNhanAboutApp.jsx"),
+    source("src/components/LocaleFlag.jsx"),
   ]);
 
   assert.ok(app.includes('href={`/${item}${window.location.hash}`}'));
@@ -252,15 +266,14 @@ test("locale navigation uses real localized links and complete head metadata", a
   assert.match(localeSwitch, /<nav className="locale-switch" aria-label=\{label\}>/u);
   assert.doesNotMatch(localeSwitch, /className="sr-only"/u);
   assert.match(localizedContent, /export const locales = \["en", "vi"\];/u);
-  assert.match(localeSwitch, /\{locales\.map\(\(item, index\) => \(/u);
-  assert.match(localeSwitch, /lang=\{item\}[\s\S]*?\{item\.toUpperCase\(\)\}/u);
+  assert.match(localeSwitch, /\{locales\.map\(\(item\) => \(/u);
+  assert.match(localeSwitch, /lang=\{item\}[\s\S]*?aria-label=\{localeName\(item\)\}/u);
+  assert.match(localeSwitch, /title=\{localeName\(item\)\}/u);
+  assert.match(localeSwitch, /<LocaleFlag locale=\{item\} \/>/u);
+  assert.doesNotMatch(localeSwitch, /toUpperCase\(|locale-divider|>\s*\{item\}\s*</u);
   const localeLinkAttributes = localeSwitch.match(/<a\b([\s\S]*?)>/u)?.[1];
   assert.ok(localeLinkAttributes, "locale link attributes must be discoverable");
-  assert.doesNotMatch(
-    localeLinkAttributes,
-    /\baria-label=/u,
-    "locale link names must come from their visible EN and VI text",
-  );
+  assert.match(localeLinkAttributes, /\baria-label=\{localeName\(item\)\}/u);
   assert.match(localeSwitch, /<a/u);
   assert.doesNotMatch(localeSwitch, /<button/u);
   assert.equal(
@@ -282,6 +295,19 @@ test("locale navigation uses real localized links and complete head metadata", a
     styles,
     /\.header-actions\s*>\s*\.locale-switch\s*\{[^}]*display:\s*none/u,
   );
+  assert.match(
+    localeFlag,
+    /en:[\s\S]*?flag_of_the_United_Kingdom\.svg[\s\S]*?vi:[\s\S]*?flag_of_Vietnam\.svg/u,
+  );
+  assert.match(localeFlag, /alt=""[\s\S]*?aria-hidden="true"/u);
+  assert.match(localeFlag, /width=\{presentation\.width\}[\s\S]*?height=\{presentation\.height\}/u);
+  assert.match(baseStyles, /\.locale-flag\s*\{[^}]*width:\s*auto;[^}]*height:\s*1rem;/su);
+  for (const application of [xnhanApp, xnhanAboutApp]) {
+    assert.match(application, /aria-label=\{localeName\(item\)\}/u);
+    assert.match(application, /title=\{localeName\(item\)\}/u);
+    assert.match(application, /<LocaleFlag locale=\{item\} \/>/u);
+    assert.doesNotMatch(application, /item\.toUpperCase\(\)/u);
+  }
 });
 
 test("locale routing remains usable when localStorage is blocked", async () => {
@@ -1409,7 +1435,7 @@ test("X Nhân remains a distinct personal-product section with two product route
   );
 });
 
-test("visitor tracking is same-origin, content-free, GPC-aware, and visibly disclosed", async () => {
+test("visitor tracking stays same-origin and content-free while the footer omits retired copy", async () => {
   const app = await applicationSource();
   const styles = await portfolioStyles();
   const trackingSource = extractFunctionSource(app, "usePortfolioVisitorTracking");
@@ -1431,28 +1457,22 @@ test("visitor tracking is same-origin, content-free, GPC-aware, and visibly disc
   assert.match(visitorCount, /fetch\("\/api\/visitor-count"/u);
   assert.doesNotMatch(visitorCount, /setInterval|visibilitychange|document\.visibilityState/u);
   assert.match(app, /className="footer-visits"/u);
-  assert.match(app, /className="footer-privacy"/u);
-  assert.match(app, /className="footer-credit"/u);
+  assert.doesNotMatch(app, /className="footer-(?:privacy|credit)"/u);
   assert.match(styles, /\.footer-visits/u);
-  assert.match(styles, /\.site-footer \.footer-privacy/u);
-  assert.match(styles, /\.footer-credit/u);
+  assert.doesNotMatch(styles, /\.footer-(?:privacy|credit)/u);
   assert.match(
     styles,
     /\.site-footer\s*\{[^}]*padding:\s*4rem var\(--page-gutter\) calc\(7rem \+ env\(safe-area-inset-bottom\)\)/su,
   );
-  assert.match(content.en.footer.privacy, /limited technical visit data may be retained/iu);
-  assert.match(content.en.footer.privacy, /traffic measurement and owner filtering/iu);
-  assert.match(content.en.footer.privacy, /Chat text is never included/u);
-  assert.match(content.vi.footer.privacy, /một số dữ liệu kỹ thuật về lượt truy cập/iu);
-  assert.match(content.vi.footer.privacy, /thống kê và lọc lưu lượng của chủ website/iu);
-  assert.match(content.vi.footer.privacy, /Nội dung trò chuyện không bao giờ được đưa vào/u);
+  assert.equal("privacy" in content.en.footer, false);
+  assert.equal("privacy" in content.vi.footer, false);
+  assert.equal("credit" in content.en.footer, false);
+  assert.equal("credit" in content.vi.footer, false);
   assert.equal(content.en.footer.visitorCountLabel, "Website visits");
   assert.equal(content.vi.footer.visitorCountLabel, "Lượt truy cập website");
-  assert.match(content.en.footer.credit, /GPT 5\.6 Sol/u);
-  assert.match(content.vi.footer.credit, /GPT 5\.6 Sol/u);
   assert.doesNotMatch(
-    `${content.en.footer.credit}\n${content.vi.footer.credit}`,
-    /[-‐‑‒–—―]/u,
+    JSON.stringify({ en: content.en.footer, vi: content.vi.footer }),
+    /limited technical visit data|một số dữ liệu kỹ thuật về lượt truy cập|GPT 5\.6 Sol|Claude Opus 5|Claude Fable 5/iu,
   );
 });
 

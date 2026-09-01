@@ -16,6 +16,7 @@ import {
 } from "./use-xnhan-webmcp.js";
 import { useAutosizeTextarea } from "./use-autosize-textarea.js";
 import { useXNhanSearchSession } from "./use-xnhan-search-session.js";
+import { LocaleFlag, localeName } from "./components/LocaleFlag.jsx";
 import { XNhanLogo } from "./XNhanLogo.jsx";
 import { XNhanTurn } from "./XNhanTurn.jsx";
 import {
@@ -347,11 +348,13 @@ export function XNhanApp() {
                   type="button"
                   key={item}
                   lang={item}
+                  aria-label={localeName(item)}
                   aria-pressed={locale === item}
+                  title={localeName(item)}
                   disabled={busy}
                   onClick={() => changeLocale(item)}
                 >
-                  {item.toUpperCase()}
+                  <LocaleFlag locale={item} />
                 </button>
               ))}
             </nav>

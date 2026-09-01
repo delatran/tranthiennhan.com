@@ -345,10 +345,6 @@ export const content = {
     },
     footer: {
       statement: "AI Engineer · Ho Chi Minh City, Vietnam",
-      privacy:
-        "Privacy: limited technical visit data may be retained for traffic measurement and owner filtering. Chat text is never included.",
-      credit:
-        "This site was completed with GPT 5.6 Sol. Claude Opus 5 and Claude Fable 5 may be rated more highly for interface design, but I still chose OpenAI. A beautiful product depends not only on the model, but also on the taste and judgment of the person using it.",
       visitorCountLabel: "Website visits",
       visitorCountUnavailable: "Unavailable",
       rights: "Trần Thiện Nhân",
@@ -752,10 +748,6 @@ export const content = {
     },
     footer: {
       statement: "Kỹ sư AI · TP. Hồ Chí Minh, Việt Nam",
-      privacy:
-        "Quyền riêng tư: một số dữ liệu kỹ thuật về lượt truy cập có thể được lưu để thống kê và lọc lưu lượng của chủ website. Nội dung trò chuyện không bao giờ được đưa vào.",
-      credit:
-        "Website này được hoàn thiện cùng GPT 5.6 Sol. Claude Opus 5 và Claude Fable 5 có thể được đánh giá cao hơn về giao diện, nhưng tôi vẫn chọn OpenAI. Sản phẩm đẹp không chỉ nhờ model mà còn nhờ gu thẩm mỹ và cách người dùng khai thác công cụ.",
       visitorCountLabel: "Lượt truy cập website",
       visitorCountUnavailable: "Chưa khả dụng",
       rights: "Trần Thiện Nhân",

@@ -86,6 +86,15 @@ img {
   max-width: 100%;
 }
 
+.locale-flag {
+  flex: 0 0 auto;
+  width: auto;
+  height: 1rem;
+  border: 1px solid rgb(13 25 13 / 18%);
+  border-radius: 0.12rem;
+  box-shadow: 0 0.08rem 0.2rem rgb(13 25 13 / 14%);
+}
+
 .xnhan-logo-avatar {
   width: 2rem;
   height: 2rem;

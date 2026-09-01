@@ -14,6 +14,7 @@ import {
 } from "./xnhan-content.js";
 import { xnhanAboutContent } from "./xnhan-about-content.js";
 import { useXNhanAboutWebMcp } from "./use-xnhan-about-webmcp.js";
+import { LocaleFlag, localeName } from "./components/LocaleFlag.jsx";
 import { XNhanLogo } from "./XNhanLogo.jsx";
 import {
   readInitialXNhanLocale,
@@ -155,10 +156,12 @@ export function XNhanAboutApp() {
                   type="button"
                   key={item}
                   lang={item}
+                  aria-label={localeName(item)}
                   aria-pressed={locale === item}
+                  title={localeName(item)}
                   onClick={() => changeLocale(item)}
                 >
-                  {item.toUpperCase()}
+                  <LocaleFlag locale={item} />
                 </button>
               ))}
             </nav>

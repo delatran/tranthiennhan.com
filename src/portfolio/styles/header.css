@@ -99,10 +99,6 @@
   border-left: 1px solid var(--border-subtle);
 }
 
-.locale-option {
-  display: contents;
-}
-
 .locale-switch a {
   display: inline-flex;
   align-items: center;
@@ -110,18 +106,21 @@
   min-width: 2.75rem;
   min-height: 2.75rem;
   padding: 0.35rem;
-  font-size: 0.9rem;
-  font-weight: 600;
   background: transparent;
+  border-radius: 999px;
+  transition:
+    background-color 150ms ease,
+    box-shadow 150ms ease;
 }
 
 .locale-switch a.is-active {
-  color: var(--accent-secondary);
+  background: var(--surface-subtle);
+  box-shadow: inset 0 0 0 1px var(--brand-primary);
 }
 
-.locale-divider {
-  color: var(--text-primary);
-  font-size: 0.82rem;
+.locale-switch a:hover:not(.is-active),
+.locale-switch a:focus-visible:not(.is-active) {
+  background: var(--surface-subtle);
 }
 
 .menu-button {
@@ -330,11 +329,7 @@
   }
 
   .header-actions > .locale-switch {
-    gap: 0;
-  }
-
-  .locale-divider {
-    display: none;
+    gap: 0.1rem;
   }
 
 }

@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { List } from "@phosphor-icons/react/dist/csr/List";
 import { X } from "@phosphor-icons/react/dist/csr/X";
 import { locales } from "../content.js";
+import { LocaleFlag, localeName } from "./LocaleFlag.jsx";
 import {
   closeMobileNavigationAtDesktopBreakpoint,
   navigateToTarget,
@@ -28,21 +29,21 @@ function LocaleSwitch({ locale, onChange, label }) {
 
   return (
     <nav className="locale-switch" aria-label={label}>
-      {locales.map((item, index) => (
-        <span className="locale-option" key={item}>
-          {index > 0 ? <span className="locale-divider">/</span> : null}
-          <a
-            href={`/${item}${window.location.hash}`}
-            hrefLang={item}
-            lang={item}
-            translate="no"
-            className={locale === item ? "is-active" : ""}
-            aria-current={locale === item ? "page" : undefined}
-            onClick={(event) => handleLocaleClick(event, item)}
-          >
-            {item.toUpperCase()}
-          </a>
-        </span>
+      {locales.map((item) => (
+        <a
+          href={`/${item}${window.location.hash}`}
+          hrefLang={item}
+          lang={item}
+          translate="no"
+          className={locale === item ? "is-active" : ""}
+          aria-label={localeName(item)}
+          aria-current={locale === item ? "page" : undefined}
+          title={localeName(item)}
+          onClick={(event) => handleLocaleClick(event, item)}
+          key={item}
+        >
+          <LocaleFlag locale={item} />
+        </a>
       ))}
     </nav>
   );

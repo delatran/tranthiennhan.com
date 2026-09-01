@@ -10,8 +10,6 @@ export function PortfolioFooter({ copy, locale, visitorCount }) {
     <footer className="site-footer">
       <div className="footer-copy">
         <p className="footer-statement">{copy.footer.statement}</p>
-        <p className="footer-privacy">{copy.footer.privacy}</p>
-        <p className="footer-credit">{copy.footer.credit}</p>
       </div>
       <div className="footer-meta">
         <p

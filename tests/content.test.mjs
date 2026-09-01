@@ -18,16 +18,16 @@ test("English and Vietnamese resources have the same shape", () => {
   assert.deepEqual(flattenShape(content.en), flattenShape(content.vi));
 });
 
-test("footer AI credit stays playful without presenting a model ranking as fact", () => {
-  assert.match(content.en.footer.credit, /GPT 5\.6 Sol/u);
-  assert.match(content.en.footer.credit, /Claude Opus 5 and Claude Fable 5 may be rated more highly/u);
-  assert.match(content.en.footer.credit, /taste and judgment of the person using it/u);
-  assert.match(content.vi.footer.credit, /GPT 5\.6 Sol/u);
-  assert.match(content.vi.footer.credit, /Claude Opus 5 và Claude Fable 5 có thể được đánh giá cao hơn/u);
-  assert.match(content.vi.footer.credit, /gu thẩm mỹ và cách người dùng khai thác công cụ/u);
+test("footer omits the retired privacy and model-credit copy in both locales", () => {
+  for (const locale of locales) {
+    assert.equal("privacy" in content[locale].footer, false);
+    assert.equal("credit" in content[locale].footer, false);
+  }
+
+  const footerCopy = JSON.stringify({ en: content.en.footer, vi: content.vi.footer });
   assert.doesNotMatch(
-    `${content.en.footer.credit}\n${content.vi.footer.credit}`,
-    /[-‐‑‒–—―]|GPT[^.]{0,80}(?:is|là) (?:weaker|worse|yếu hơn)|outperform/iu,
+    footerCopy,
+    /limited technical visit data|một số dữ liệu kỹ thuật về lượt truy cập|GPT 5\.6 Sol|Claude Opus 5|Claude Fable 5/iu,
   );
 });
 
@@ -132,10 +132,6 @@ test("Ask Nhân describes its no-storage boundary consistently in both locales",
     /Thống kê lượt truy cập và hiệu năng trang không nhận nội dung trò chuyện/u,
   );
   assert.match(content.vi.chat.disclosure, /AI có thể trả lời sai/u);
-  assert.match(content.en.footer.privacy, /limited technical visit data/iu);
-  assert.match(content.en.footer.privacy, /Chat text is never included/u);
-  assert.match(content.vi.footer.privacy, /một số dữ liệu kỹ thuật về lượt truy cập/iu);
-  assert.match(content.vi.footer.privacy, /Nội dung trò chuyện không bao giờ được đưa vào/u);
   assert.doesNotMatch(
     JSON.stringify(content),
     /\bCloudflare\b|\bTurnstile\b|Workers\s+AI|@cf\//iu,
