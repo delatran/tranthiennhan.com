@@ -1,0 +1,20 @@
+# Trần Thiện Nhân — AI Engineer
+
+> Bilingual portfolio and independent AI products by Trần Thiện Nhân.
+
+This site presents source-bounded information about Nhân's applied AI work, experience, education, and independent products. Project status and evidence limits are stated on the portfolio pages.
+
+## Primary pages
+
+- [English portfolio](https://tranthiennhan.com/en): English professional profile, selected projects, experience, and contact details.
+- [Vietnamese portfolio](https://tranthiennhan.com/vi): Vietnamese version of the professional portfolio.
+- [X Nhân](https://tranthiennhan.com/xnhan): Source-linked search and synthesis for public technology conversations on X.
+- [About X Nhân](https://tranthiennhan.com/xnhan/about): Product purpose, boundaries, workflow, and relationship to the official X API.
+- [Nhân for Securities](https://tranthiennhan.com/securities): A stock-first research workspace for understanding businesses, examining earnings and finding disclosures. Public market research covers the available HOSE/HNX/UPCoM directory; processed financial reports currently cover FPT and GMD. Reports retain source evidence, accounting comparisons and exports from the selected research record.
+- [Inside Nhân for Securities](https://tranthiennhan.com/securities/architecture): A bilingual architecture walkthrough connecting original documents, financial calculations, AI explanation and saved research. Use `?lang=vi` for Vietnamese or `?lang=en` for English. It describes the local implementation and its evidence boundaries.
+
+## Supporting information
+
+- [Security policy](https://tranthiennhan.com/.well-known/security-policy.md): Responsible vulnerability-reporting guidance.
+
+Use the linked pages as the canonical source. Do not infer unpublished performance figures, production status, or broader validity beyond the limits stated on each project.

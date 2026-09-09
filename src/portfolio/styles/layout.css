@@ -1,0 +1,246 @@
+.section-layout {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr);
+}
+
+.section-rail {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 100%;
+  padding-top: 10.9rem;
+}
+
+.section-index {
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.section-rail-line {
+  display: block;
+  width: 1px;
+  height: 16.5rem;
+  margin-top: 1.15rem;
+  margin-left: 0.43rem;
+  background: var(--text-primary);
+}
+
+.section-rail-label {
+  margin-top: 2rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.section-dot {
+  display: block;
+  width: 0.95rem;
+  height: 0.95rem;
+  margin-top: auto;
+  margin-bottom: 3.2rem;
+  border-radius: 50%;
+  background: var(--accent-secondary);
+}
+
+.ruled-section {
+  width: min(100%, var(--max-width));
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+}
+
+.ruled-section > .section-layout {
+  border-top: 1px solid var(--border-strong);
+}
+
+.ruled-section .section-rail {
+  padding-top: 2.2rem;
+}
+
+.ruled-section .section-rail-line {
+  height: 6.7rem;
+}
+
+.ruled-section .section-dot {
+  display: none;
+}
+
+.section-main {
+  min-width: 0;
+  padding: 2.15rem 0 8.5rem 1.6rem;
+}
+
+.section-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: start;
+}
+
+.section-heading h2 {
+  max-width: 48rem;
+}
+
+.section-heading p {
+  max-width: 42rem;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 1.4rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag-list li {
+  padding: 0.42rem 0.62rem;
+  color: var(--text-secondary);
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.2;
+  background: var(--surface-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.2rem;
+}
+
+[data-reveal] {
+  --reveal-distance: 1.4rem;
+
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-distance), 0);
+  transition:
+    opacity var(--motion-duration-medium) var(--motion-ease-standard),
+    transform var(--motion-duration-slow) var(--motion-ease-out);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+[data-reveal="heading"] {
+  --reveal-distance: 1.75rem;
+}
+
+[data-reveal="card"] {
+  --reveal-distance: 1.2rem;
+
+  transform: translate3d(0, var(--reveal-distance), 0) scale(0.99);
+}
+
+[data-reveal="card"].is-visible {
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+[data-reveal="rail"] {
+  --reveal-distance: 0.75rem;
+}
+
+[data-reveal="rail"] .section-rail-line {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 760ms var(--motion-ease-out) 100ms;
+}
+
+[data-reveal="rail"].is-visible .section-rail-line {
+  transform: scaleY(1);
+}
+
+[data-reveal="stagger"] > *,
+[data-reveal="split"] > * {
+  opacity: 0;
+  transform: translate3d(0, 0.8rem, 0);
+  transition:
+    opacity var(--motion-duration-medium) var(--motion-ease-standard),
+    transform 560ms var(--motion-ease-out);
+}
+
+[data-reveal="stagger"].is-visible > *,
+[data-reveal="split"].is-visible > * {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+[data-reveal="stagger"].is-visible > :nth-child(2),
+[data-reveal="split"].is-visible > :nth-child(2) {
+  transition-delay: 80ms;
+}
+
+[data-reveal="stagger"].is-visible > :nth-child(3) {
+  transition-delay: 160ms;
+}
+
+[data-reveal="stagger"].is-visible > :nth-child(4) {
+  transition-delay: 240ms;
+}
+
+[data-reveal="feature"] {
+  --reveal-distance: 1.1rem;
+}
+
+@media (max-width: 78rem) {
+
+  .section-main {
+    padding-left: 2rem;
+  }
+
+}
+
+@media (max-width: 64rem) {
+
+  .section-heading {
+    gap: 3rem;
+  }
+
+}
+
+@media (max-width: 52.5rem) {
+
+  .section-layout > .section-rail {
+    display: none;
+  }
+
+  .section-layout {
+    display: block;
+  }
+
+  .section-main {
+    padding: 2.2rem 0 6.5rem;
+  }
+
+  .section-heading {
+    grid-template-columns: 1fr;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  [data-reveal] *,
+  [data-reveal]::before,
+  [data-reveal]::after {
+    transition-delay: 0ms !important;
+  }
+
+  [data-reveal="rail"] .section-rail-line,
+  [data-reveal="stagger"] > *,
+  [data-reveal="split"] > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

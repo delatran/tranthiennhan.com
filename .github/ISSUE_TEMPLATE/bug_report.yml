@@ -1,0 +1,70 @@
+name: Bug report
+description: Report a reproducible defect in the portfolio, Ask Nhân, or X Nhân.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for the report. Remove credentials, cookies, private transcripts, and unrelated personal data before submitting. Report security vulnerabilities privately through SECURITY.md.
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Affected surface
+      options:
+        - English portfolio at /en
+        - Vietnamese portfolio at /vi
+        - Ask Nhân popup
+        - X Nhân at /xnhan
+        - X Nhân About at /xnhan/about
+        - Application API or Worker
+        - Repository tooling or documentation
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser, operating system, viewport, and route. Do not include tokens or account identifiers.
+      placeholder: Chrome, Windows 11, 390 by 844, /vi
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Give the smallest deterministic sequence that reproduces the issue.
+      placeholder: |
+        1. Open ...
+        2. Select ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Redacted evidence
+      description: Add a screenshot or sanitized console error if useful. Never paste an API key, cookie, authorization header, or private conversation.
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Safety checks
+      options:
+        - label: I searched existing issues for the same defect.
+          required: true
+        - label: This report contains no secret, credential, private transcript, or unrelated personal data.
+          required: true
+        - label: This is not a security vulnerability requiring private disclosure.
+          required: true

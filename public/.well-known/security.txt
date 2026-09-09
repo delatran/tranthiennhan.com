@@ -1,0 +1,5 @@
+Contact: mailto:tranthiennhan.work@gmail.com
+Canonical: https://tranthiennhan.com/.well-known/security.txt
+Preferred-Languages: en, vi
+Policy: https://tranthiennhan.com/.well-known/security-policy.md
+Expires: 2027-06-30T23:59:59.000Z

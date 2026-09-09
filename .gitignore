@@ -1,0 +1,42 @@
+# Dependencies and build output
+node_modules/
+dist/
+.wrangler/
+.vite/
+coverage/
+artifacts/
+.playwright-cli/
+
+# Local runtime configuration and credentials
+.env
+.env.*
+.dev.vars*
+!.dev.vars.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Local databases and operational residue
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Historical research belongs outside the publishable source tree
+docs/research/
+
+# Editors and operating systems
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+Desktop.ini

@@ -1,0 +1,9 @@
+# Copy this file to .dev.vars for intentional local Worker development.
+# Keep real values out of source control.
+
+OPENAI_API_KEY=
+OPENROUTER_API_KEY=
+XNHAN_OPENAI_MODEL=
+XNHAN_OPENROUTER_MODEL=
+XNHAN_OPENAI_MODEL_DISPLAY_NAME=
+XNHAN_OPENROUTER_MODEL_DISPLAY_NAME=
